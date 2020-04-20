@@ -1,4 +1,4 @@
-# BrainMRI-generation-using-GANs
+# Brain-MRI-generation-using-GANs
 Brain Magnetic Resonance Imaging Generation using Generative Adversarial Networks - master thesis
 
 #################################
