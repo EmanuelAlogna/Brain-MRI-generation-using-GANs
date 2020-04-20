@@ -4,6 +4,7 @@ import glob
 import pandas as pd
 import tensorflow as tf
 
+BATCH_SIZE = 32
 
 def compute_psnr(image1, image2):
     # Compute PSNR over tf.float32 Tensors.
