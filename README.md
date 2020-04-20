@@ -1,5 +1,5 @@
-# MRI-generation
-Generation missing MRI using GANs - master thesis
+# BrainMRI-generation-using-GANs
+Brain Magnetic Resonance Imaging Generation using Generative Adversarial Networks - master thesis
 
 #################################
 
