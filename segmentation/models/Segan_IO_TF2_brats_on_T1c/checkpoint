@@ -1,0 +1,2 @@
+model_checkpoint_path: "best_dice_score_1011-48"
+all_model_checkpoint_paths: "best_dice_score_1011-48"
