@@ -7,8 +7,11 @@
 
 # In Details
 
-Project architecture 
+Instructions 
 --------------
+
+- The dataset used in this work is BRATS2015 (preprocessed using the file *write_tfrecord_script.py*).
+- Batch size used in all the models is equal to 32.
 
 Folder structure
 --------------
@@ -48,3 +51,11 @@ Folder structure
 │   ├── dataset_helpers.py                          - script with some utility functions.
 │   ├── dsc_from_generated_samples.ipynb            - this file computes DSC from the segmentation of the predictions.
 │   └── segmentations_from_generated_samples.ipynb  - this file shows the qualitative results of segmentation of the predictions.
+
+```
+
+Models overview
+--------------
+
+Brain MRI generated with GANs
+--------------
