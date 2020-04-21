@@ -53,8 +53,6 @@ Folder structure
 │   ├── dsc_from_generated_samples.ipynb            - this file computes DSC from the segmentation of the predictions.
 │   └── segmentations_from_generated_samples.ipynb  - this file shows the qualitative results of segmentation of the predictions.
 
-
-[1] [E. Giacomello, D. Loiacono, and L. Mainardi, “Brain mri tumor segmentation with adversarial networks,” 2019](https://arxiv.org/abs/1910.02717)
 ```
 
 Models overview
@@ -62,3 +60,9 @@ Models overview
 
 Brain MRI generated with GANs
 --------------
+
+
+References
+--------------
+
+[1] [E. Giacomello, D. Loiacono, and L. Mainardi, “Brain mri tumor segmentation with adversarial networks,” 2019](https://arxiv.org/abs/1910.02717)
