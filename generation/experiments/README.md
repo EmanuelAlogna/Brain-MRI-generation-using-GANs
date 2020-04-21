@@ -1,7 +1,9 @@
 
 # Some Details
 
-- All the experiments are conducted using model synthesizing the missing modality T2flair
+- All the experiments are conducted using model synthesizing the missing modality T2flair.
+- All the experiments contain mainly two parts: one used to evaluate quantitatively the performances of the models and one to plot the predictions.
+- The function *restore_models* allows to retrieve the model trained (that can be pix2pix/MI-pix2pix/MI-GAN) and then initialize all the generators variants, each one with a different number of connections (skips or internal) turned off / perturbed.
 
 Folder structure
 --------------
