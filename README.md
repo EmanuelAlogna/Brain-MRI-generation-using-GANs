@@ -39,6 +39,10 @@ Folder structure
 │
 │
 │
+├── images      - this folder contains images used in the documentation.
+│
+│
+│
 ├── segmentation      - this folder contains all the files needed to segment the predictions
 │   ├── models        - this file contains the models implemented and trained by [1].
 │   │
@@ -55,13 +59,13 @@ Brain MRI generated with GANs
 --------------
 
 
-![](/images/generated_samples.png)
+<img src="/images/generated_samples.png" alt="alt text" width="720" height="">
 
 Segmentations using GANs predictions
 --------------
 
 
-![](/images/segmented_samples.png)
+<img src="/images/segmented_samples.png" alt="alt text" width="720" height="">
 
 References
 --------------
