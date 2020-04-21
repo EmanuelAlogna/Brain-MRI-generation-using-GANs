@@ -2,6 +2,43 @@
 Brain Magnetic Resonance Imaging Generation using Generative Adversarial Networks - master thesis
 
 
-Abstract of the work:
+# In Details
 
-Magnetic Resonance Imaging (MRI) is nowadays one of the most common medical imaging techniques, due to the non-invasive nature of this type of scan that can acquire many modalities (or sequences), each one with a different image appearance and unique insights about a particular disease. However, it is not always possible to obtain all the sequences required, due to many issues such as prohibitive scan times or allergies to contrast agents. To overcome this problem and thanks to the recent improvements in Deep Learning, in the last few years researchers have been studying the applicability of Generative Adversarial Network (GAN) to synthesize the missing modalities. Our work proposes a detailed study that aims to demonstrate the power of GANs in generating realistic MRI scans of brain tumors through the implementation of different models. We trained in particular two kind of networks which differ from the number of sequences received in input, using a dataset composed by 274 different volumes from subjects with brain tumor, and, among a set of different evaluation metrics implemented to test our results, we validated the quality of the predicted images using also a segmentation model. In addition, we analysed the GANs trained by performing some experiments to understand how the information passes through the generator network. Our results show that the synthesized sequences are highly accurate, realistic and in some cases indistinguishable from true brain slices of the dataset, highlighting the advantage of multi-modal models that, compared to the unimodal ones, can exploit the correlation between available sequences. Moreover, they demonstrate the effectiveness of skip connections and their crucial role in the generative process by showing the significant degradation in the performances, analysed in both a qualitative and quantitative way, when these channels are turned off or perturbed.
+Project architecture 
+--------------
+
+<div align="center">
+
+<img align="center" hight="600" width="600" src="https://github.com/Mrgemy95/Tensorflow-Project-Templete/blob/master/figures/diagram.png?raw=true">
+
+</div>
+
+
+Folder structure
+--------------
+
+```
+├──  base
+│   ├── base_model.py   - this file contains the abstract class of the model.
+│   └── base_train.py   - this file contains the abstract class of the trainer.
+│
+│
+├── model               - this folder contains any model of your project.
+│   └── example_model.py
+│
+│
+├── trainer             - this folder contains trainers of your project.
+│   └── example_trainer.py
+│   
+├──  mains              - here's the main(s) of your project (you may need more than one main).
+│    └── example_main.py  - here's an example of main that is responsible for the whole pipeline.
+
+│  
+├──  data _loader  
+│    └── data_generator.py  - here's the data_generator that is responsible for all data handling.
+│ 
+└── utils
+     ├── logger.py
+     └── any_other_utils_you_need
+
+```
