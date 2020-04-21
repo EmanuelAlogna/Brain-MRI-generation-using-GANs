@@ -32,7 +32,7 @@ Folder structure
 │
 ├── generation        - this folder contains any source of code related to the MRI generation.
 │   ├── experiments   - this folder contains the experiments conducted: Skip and Internal connection analyses
-│   ├── models        - this folder contains the 14 models trained. 
+│   ├── models        - this folder contains the code needed to train the 14 models of our work. 
 │   ├── tests         - this folder contains the notebooks to test, qualitatively and quantitavely, the models.
 │   │
 │   ├── compute_baselines.ipynb            - this file contains the code to compute baselines score between modalities.
