@@ -31,11 +31,11 @@ Folder structure
 │   ├── models        - this folder contains the 14 models trained. 
 │   ├── tests         - this folder contains the notebooks to test, qualitatively and quantitavely, the models.
 │   │
-│   ├── compute_baselines.ipynb             - this file contains the abstract class of the trainer.
-│   ├── dataset_helpers.py                  - this file contains the abstract class of the trainer.
-│   ├── evaluation_metrics.py               - this file contains the abstract class of the trainer.
-│   ├── generate_images_to_segment.ipynb   - this file contains the abstract class of the trainer. 
-│   └── write_tfrecord_script.py            - this script is needed to .mha files and convert them in a tf.record.
+│   ├── compute_baselines.ipynb            - this file contains the code to compute baselines score between modalities.
+│   ├── dataset_helpers.py                 - this file contains the code to read tf.record.
+│   ├── evaluation_metrics.py              - this file contains the implemented evaluation metrics.
+│   ├── generate_images_to_segment.ipynb   - this file stores all the predictions inside a tf.record.
+│   └── write_tfrecord_script.py           - this script is needed to convert .mha files in tf.record.
 │
 │
 │
@@ -44,7 +44,7 @@ Folder structure
 │   │
 │   ├── DeepMRI.py                                  - script from [1].
 │   ├── SegAN_IO_arch.py                            - script from [1].
-│   ├── SeganCATonColab.ipynb                       - notebook from [1].
-│   ├── dataset_helpers.py                          - script that allows to read tf.record.
-│   ├── dsc_from_generated_samples.ipynb            - this file contains the abstract class of the trainer.
-│   └── segmentations_from_generated_samples.ipynb  - this file contains the abstract class of the trainer.
+│   ├── SeganCATonColab.ipynb                       - this file allows to test the predictions contained in data folder
+│   ├── dataset_helpers.py                          - script with some utility functions.
+│   ├── dsc_from_generated_samples.ipynb            - this file computes DSC from the segmentation of the predictions.
+│   └── segmentations_from_generated_samples.ipynb  - this file shows the qualitative results of segmentation of the predictions.
