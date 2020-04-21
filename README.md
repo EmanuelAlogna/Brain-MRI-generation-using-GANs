@@ -14,6 +14,13 @@ Folder structure
 --------------
 
 ```
+├──  data                       - this folder contains a batch of T1c predictions from our models. 
+│   ├── batch_from_MIGAN_t1c.npy 
+│   ├── batch_from_MIpix2pix_t1c.npy 
+│   └── batch_from_pix2pix_t1c.npy
+│ 
+│
+│
 ├──  documentation/thesis
 │   └── b2020_04_Alogna.pdf     - this file contains the master thesis pdf.
 │ 
@@ -27,7 +34,7 @@ Folder structure
 │   ├── compute_baselines.ipynb             - this file contains the abstract class of the trainer.
 │   ├── dataset_helpers.py                  - this file contains the abstract class of the trainer.
 │   ├── evaluation_metrics.py               - this file contains the abstract class of the trainer.
-│   ├── egenerate_images_to_segment.ipynb   - this file contains the abstract class of the trainer. 
+│   ├── generate_images_to_segment.ipynb   - this file contains the abstract class of the trainer. 
 │   └── write_tfrecord_script.py            - this script is needed to .mha files and convert them in a tf.record.
 │
 │
