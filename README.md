@@ -11,7 +11,7 @@
 - The dataset used in this work is [BRATS2015](https://www.smir.ch/BraTS/Start2015) (preprocessed using the file *write_tfrecord_script.py*).
 
 
-- To validate the predictions using the segmentation model, it's necessary to first write a tf.record that contains all generated samples (*[generate_images_to_segment.ipynb](generation/generate_images_to_segment.ipynb)*) and then test quantitatively (*[dsc_from_generated_samples.ipynb](segmentation/dsc_from_generated_samples.ipynb)*) or qualitatively (*[segmentations_from_generated_samples.ipynb](segmentation/segmentations_from_generated_samples.ipynb)*) the segmentations.
+- To validate the predictions using the segmentation model, it's necessary to first write a tf.record that contains all generated samples (use  *[generate_images_to_segment.ipynb](generation/generate_images_to_segment.ipynb)*) and then test quantitatively (use *[dsc_from_generated_samples.ipynb](segmentation/dsc_from_generated_samples.ipynb)*) or qualitatively (use *[segmentations_from_generated_samples.ipynb](segmentation/segmentations_from_generated_samples.ipynb)*) the segmentations.
 
 Folder structure
 --------------
