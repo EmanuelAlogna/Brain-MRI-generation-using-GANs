@@ -54,17 +54,27 @@ Folder structure
 │   └── segmentations_from_generated_samples.ipynb  - this file shows the qualitative results of segmentation of the predictions.
 
 ```
-
-Brain MRI generated with GANs
+Models overview
 --------------
 
+- pix2pix was developed following the [official implementation of Tensorflow](http://tensorflow.org/tutorials/generative/pix2pix) and the original paper ([Isola et al., 2016](
+https://arxiv.org/abs/1611.07004)).
+
+- MI-pixpix is a modified version of pix2pix, adapted to the multi-input scenario. 
+
+- MI-GAN is a modified version of the MM-GAN ([Sharma et al., 2019](https://arxiv.org/abs/1904.12200)), adapted to the many-to-one scenario.
+
+
+Generated MRI samples
+--------------
+<br />
 
 <img src="/images/generated_samples.png" alt="alt text" width="720" height="">
 
 Segmentations using GANs predictions
 --------------
 
-
+<br />
 <img src="/images/segmented_samples.png" alt="alt text" width="720" height="">
 
 References
