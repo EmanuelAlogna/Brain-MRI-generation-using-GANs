@@ -55,12 +55,17 @@ Folder structure
 
 ```
 
-Models overview
---------------
-
 Brain MRI generated with GANs
 --------------
 
+
+![](/images/generated_samples.png)
+
+Segmentations using GANs predictions
+--------------
+
+
+![](/images/segmented_samples.png)
 
 References
 --------------
