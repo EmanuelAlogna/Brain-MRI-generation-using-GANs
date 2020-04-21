@@ -11,7 +11,7 @@
 Instructions 
 --------------
 
-- The dataset used in this work is BRATS2015 (preprocessed using the file *write_tfrecord_script.py*).
+- The dataset used in this work is [BRATS2015](https://www.smir.ch/BraTS/Start2015) (preprocessed using the file *write_tfrecord_script.py*).
 - Batch size used in all the models is equal to 32.
 
 Folder structure
