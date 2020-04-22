@@ -13,6 +13,10 @@
 
 - To validate the predictions using the segmentation model, it's necessary to first write a tf.record that contains all generated samples (use  *[generate_images_to_segment.ipynb](generation/generate_images_to_segment.ipynb)*) and then test quantitatively (use *[dsc_from_generated_samples.ipynb](segmentation/dsc_from_generated_samples.ipynb)*) or qualitatively (use *[segmentations_from_generated_samples.ipynb](segmentation/segmentations_from_generated_samples.ipynb)*) the segmentations.
 
+- checkpoints of the trained GANs (synthesizing T2flair) are available at: https://drive.google.com/open?id=1TQuv6BGNnLjNCTbqHgwb1Asu1C4vumpj. They can be used to perform more experiments on the skip and internal connections or to continue the training for more epochs.
+
+- all the trained models (extension .h5) are avalaible at: https://drive.google.com/open?id=1vPUR3MvasCpUIw-J-HkkANKbYCCWy-ln.
+
 Folder structure
 --------------
 
