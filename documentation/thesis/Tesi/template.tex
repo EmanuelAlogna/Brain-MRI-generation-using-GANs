@@ -1,0 +1,201 @@
+\documentclass[a4paper,12pt,openright,notitlepage,twoside]{book}
+\raggedbottom % lascia alla fine delle pagine lo spazio invece che adattarle
+
+
+% pacchetti da caricare
+\usepackage[T1]{fontenc} % definisce i caratteri di output
+\usepackage[utf8]{inputenc} % definisce i caratteri di input
+\usepackage[italian,english]{babel} % definisce la lingua del documento
+\usepackage{float}
+\usepackage[headheight=15pt]{geometry} % definisce i margini del documento
+\geometry{a4paper,top=30mm,bottom=30mm,left=30mm,right=25mm,heightrounded,bindingoffset=3mm}
+\usepackage{fancyhdr} % serve per gestire intestazione e piè di pagina
+\pagestyle{fancy}
+\usepackage{multirow}
+\usepackage{setspace} % interlinea
+\DeclareMathSymbol{\mh}{\mathord}{operators}{`\-}
+\usepackage{emptypage} % serve per fare le pagine vuote
+\usepackage[pdftex]{hyperref} % serve per ottenere links e indice cliccabili
+\hypersetup{colorlinks=true,allcolors=black}
+\usepackage{microtype} % migliora la scrittura del testo
+\usepackage{appendix} % serve per personalizzare l'appendice
+\usepackage[printonlyused]{acronym} % serve per creare l'elenco degli acronimi
+\usepackage{eurosym} % serve per scrivere il singolo dell'euro
+\usepackage{siunitx} % serve per mettere le unita` di misura nel SI
+\usepackage{mathtools} % serve per fare le formule matematiche (carica anche AMSMATH)
+\usepackage{booktabs} % serve per fare le tabelle più belle
+\usepackage{multirow} % serve per fare le tabelle con righe complesse
+\usepackage{pgfplotstable} % serve per fare tabelle da file con dati tabulati
+\usepackage{graphicx} % serve per fare le figure
+\usepackage{tikz} % serve per fare i grafici
+\usepackage{pgfplots} % serve a fare i grafici anche lui
+\pgfplotsset{compat=1.14}
+\usepackage{subcaption} % serve per aggiungere la didascalia alle figure composte (carica anche CAPTION)
+\captionsetup{font=small,labelsep=period,format=hang}
+\usepackage{tocloft} % serve per fare le liste di figure e tabelle più belle
+\usepackage{cite} % serve per mettere le citazioni bibliografiche
+
+% and from https://tex.stackexchange.com/questions/319805/how-to-include-bibliography-in-table-of-content:
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+
+%\usepackage{eurosym}
+%\usepackage{mathabx}
+\usepackage{amsmath,amssymb}
+
+% modifiche dei comandi
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}} % modifica l'intestazione con il nome/numero del capitolo
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}} % modifica l'intestazione con il nome/numero dela sezione
+\renewcommand{\cftfigfont}{Figure } % per aggiungere "Figure " nella lista delle figure
+\renewcommand{\cfttabfont}{Table } % per aggiungere "Table " nella lista delle tabelle
+
+
+
+% dichiarazioni personalizzate
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert} % per fare il valore assoluto
+\DeclarePairedDelimiter{\norma}{\lVert}{\rVert} % per fare la norma
+
+
+
+\begin{document}
+
+%\frontmatter % serve per mettere i numeri romani come numeri di pagina 
+\thispagestyle{empty} % serve per rimuovere tutte le impostazioni delle pagine dalla prima pagina
+
+% FRONTESPIZIO
+\begin{center}
+% Intestazione
+\Large{\textbf{Politecnico di Milano}} \\
+\vspace{-2mm}
+\rule{\textwidth}{0.4pt}
+\normalsize{SCHOOL OF INDUSTRIAL AND INFORMATION ENGINEERING} \\
+\normalsize{Master of Science in Computer Science and Engineering} \\
+\vspace{20mm}
+% Logo Politecnico
+\begin{figure}[h!]
+\centering
+\includegraphics[height=0.20\textheight]{images/logo_poli_bianco}
+\end{figure}
+\vspace{12mm}
+% Titolo Tesi
+\huge{\textbf{Brain Magnetic Resonance Imaging Generation using Generative Adversarial Networks}} \\
+\vspace{22mm}
+\end{center}
+
+% Relatore/Correlatore
+\begin{flushleft}
+\normalsize{Supervisor} \\
+\small{\textbf{Daniele LOIACONO}} \\
+\vspace{5mm}
+\normalsize{Co-Supervisor} \\
+\small{\textbf{Edoardo GIACOMELLO}} \\
+\end{flushleft}
+\vspace{10mm}
+
+% Autore
+\begin{flushright}
+\normalsize{Candidate} \\
+\small{\textbf{Emanuel ALOGNA -- 893592}} \\
+\end{flushright}
+\vspace{15mm}
+
+% Piè Di Pagina
+\begin{center}
+\rule{\textwidth}{0.4pt}
+\small{\textbf{Academic Year 2018 -- 2019}}
+\end{center}
+
+
+% modifica intestazione e piè di pagina del corpo del documento
+\fancyhead{} % cancella tutti i campi dell'intestazione
+\fancyfoot{} % cancella tutti i campi del piè di pagina
+\fancyhead[LE,RO]{\leftmark}
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+% carico le varie parti della tesi
+
+\input{chapters/dedica}
+%\mainmatter
+\input{chapters/acknowledgements}
+%\setcounter{page}{1}
+\cleardoublepage
+
+% Indice 
+\phantomsection
+\addcontentsline{toc}{chapter}{\contentsname}
+\tableofcontents
+\cleardoublepage
+
+% Lista delle Figure
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
+
+
+% Lista delle Tabelle
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\cleardoublepage
+
+
+
+\input{chapters/abstract}
+\input{chapters/estratto}
+%\input{chapters/extended_abstract}
+\cleardoublepage
+
+
+% modifica intestazione indice
+\fancyhead[LE,RO]{\nouppercase{\leftmark}} % cancella il tutto maiuscolo
+
+
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\fancyfoot[LE,RO]{\thepage}
+
+%\mainmatter % serve per mettere i numeri arabi come numeri di pagina
+
+\onehalfspace
+% Capitoli Tesi
+\input{chapters/1st_chapter}
+\input{chapters/2nd_chapter}
+\input{chapters/3rd_chapter}
+\input{chapters/4th_chapter}
+\input{chapters/5th_chapter}
+\input{chapters/6th_chapter}
+\input{chapters/7th_chapter}
+
+% Appendici
+\renewcommand{\chaptermark}[1]{\markboth{\appendixname\ \thechapter.\ #1}{}} % modifica l'intestazione con il nome/lettera dell'appendice
+\fancyhead[LE,RO]{\leftmark}
+
+
+% Acronimi
+\input{chapters/acronyms}
+
+
+% modifica intestazione della bibliografia
+\fancyhead[LE,RO]{\nouppercase{\leftmark}} % cancella il tutto maiuscolo
+
+
+% bibliografia
+%\input{chapters/bibliography}
+% because the file is called 'bibliography.tex'
+
+\bibliographystyle{IEEEtran}
+\bibliography{chapters/bibliography}
+% to remove Bibliography from list of contents, remove the relative package (tocbibind).
+\appendix % trasforma i numeri in lettere per fare l'appendice
+\input{chapters/first_appendix}
+%\bibliographystyle{ieeetr}
+
+% from stackexchange:
+%First of all, IEEE is really bad with conference style (I should probably say that the IEEEtran is getting old pretty fast.) and many conferences encourage the users to download the ieeeconf style from various sources.
+
+%\bibliography{/directory_bibliografia_mendeley/library}
+
+\end{document}

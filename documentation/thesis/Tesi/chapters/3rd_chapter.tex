@@ -1,0 +1,210 @@
+\chapter{Brain Tumor MRI}
+\label{cha:3rd_chapter}
+In this chapter we first give some details about Magnetic Resonance Imaging (Section \ref{sec:mri}) and then we discuss about the problem of missing modalities, with a particular focus on brain tumor imaging (Section \ref{sec:brain_mri_generation}). We also describe the data used in our experiments, by presenting details of the dataset: in Section \ref{sec:dataset} we illustrate how it is organized and which modalities contains while Section \ref{sec:preprocessing} gives a detailed description about the preprocessing steps applied in order to prepare the images before being used in our models.
+
+
+\section{Magnetic Resonance Imaging}
+\label{sec:mri}
+We already discussed, in Chapter \ref{cha:first_chapter}, why Magnetic Resonance Imaging (\ac{MRI}) nowadays is so important and so widely used in every hospital and medical center: first of all it's a non-invasive procedure, since it doesn't make use neither of X-ray nor of ionizing radiation. 
+
+In order to scan a portion of the body radio waves are used: they interact with specific molecules in the body (protons, the nuclei of hydrogen atoms) and these radio signals are turned on and off. The energy in the waves is absorbed by the atoms in the target area and then reflected back, through the tissues, out of the body: when this happens, the signals coming out are captured by the~\ac{MRI} machine. Finally these captured signals are sent to the~\ac{MRI} computer and combined together in a 3D image. 
+
+\vspace{2mm} %5mm vertical space
+This medical imaging technique has also the benefit of being extremely clear in details belonging to soft-tissues. Furthermore, it can scan larger parts of the body with respect to other imaging techniques, can produce hundreds of scans from almost any direction and in any orientation and the contrast agents used to obtain some particular sequences are less likely to cause some allergic reactions that may occur when iodine-based substances are used, for example for X-rays and CT\cite{mri_benefits}.
+
+\vspace{2mm} %5mm vertical space
+What makes very interesting this imaging technique is that a single~\ac{MRI} scan is a grouping of multiple pulse sequences (modalities), each one highlighting different tissue contrast views and spatial resolution, allowing to give to the doctor various insights about a possible disease, since each modality presents a particular, and sometimes unique, image appearance, that is not possible to observe in other modalities: a clear example of it is the $T_{2}$-fluid-attenuant inversion recovery ($T_{2\textit{flair}}$), used in brain imaging. This modality is very similar to $T_{2}$-weighted ($T_{2}$) beside the fact that, as the name suggests, the~\ac{CSF} effect on the image is suppressed and allows to see clearly the tumor area. 
+Figure~\ref{fig:t2_vs_t2flair} shows two brain MRI sequences belonging to the same patient, from the dataset BRATS2015, where is possible to see how the sequence on the right, $T_{2\textit{flair}}$, is able to highlight the tumor (white color) in a better way than the sequence on the left, $T_{2}$, by suppressing the~\ac{CSF}: in order to obtain the scan on the right, the ventricular~\ac{CSF} signal is dampened and this causes the highest signals, belonging to tumors or other brain abnormalities, to have a light color, while the~\ac{CSF} appears black.
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics[height=0.20\textheight]{images/t2_vs_t2flair.pdf}
+\caption[Brain MRI sequences from BRATS2015: $T_{2}$ and $T_{2\textit{flair}}$]{Brain MRI sequences - $T_{2}$ and $T_{2\textit{flair}}$ - of the same patient, from BRATS2015.}
+\label{fig:t2_vs_t2flair}
+\end{figure}
+
+\section{Brain MRI Generation}
+\label{sec:brain_mri_generation}
+The problem of \ac{MRI} is that often not all the sequences are available. Sometimes there isn't the possibility to acquire all the scans required for a diagnosis: prohibitive scan times, for instance, is one of the main issues in the magnetic resonance imaging acquisition. Moreover, modalities might be missing or unusable because of scan corruption, artifacts, incorrect machine settings but also due to high costs in terms of money to perform the screening.
+Another important issue is represented by contrast allergies: certain modalities can't be obtained from patients that can't have injected into their body a contrast agent.
+
+Being able to generate realistic \ac{MRI} scans would allow, first, to use these sequences as a direct aid to the doctor that might need more information to diagnose a specific disease and, secondly, to use the new images as input of a downstream analysis tool such as a segmentation model that might require to receive all the sequences in order to segment, for example, a tumor and to distinguish between unhealthy cells from healthy ones.
+
+A possible solution comes from the field of Deep Learning where a recent breakthrough opened the possibility of generating missing modalities: Generative Adversarial Networks, whose theory behind has been extensively described in Subsection \ref{subsec:gan}.
+In this work we study the generative power of \ac{GAN}s applied to the \ac{MRI} domain. In particular our focus is on brain tumor imaging (also known as neuroimaging): the incidence of brain tumors has been increasing in the last 20 years and it is one of the most common type of tumor in the world, according to an epidemiological review from the World Cancer Research Journal \cite{epidemiological_review}. Because of this an early detection of the tumor, after generating all the sequences required for a diagnosis, as well as preventive measures to reduce the risk factors of this disease, are crucial.
+
+\section{Dataset}
+\label{sec:dataset}
+The dataset used in this work comes from the Multimodal Brain Tumor Segmentation Challenge 2015 (known as BRATS2015)\cite{brats2015_1, brats2015_2}. Challenge with the purpose of focusing on the evaluation of state-of-the-art methods for the segmentation of multimodal~\ac{MRI} scans of the brain. 
+
+Even though BRATS2015 comes with a training and a test set, for our work we used only the information contained in the first set, since the training includes, per each scan, also the ground truth, so a segmented image of the tumor, that we used in order to measure, during the training but also during the evaluation phase, the quality of the synthesized brain image in the tumor area. 
+
+\subsection{Dataset Organization}
+\label{sec:dataset_organization}
+BRATS 2015 is composed by fully anonymized images of the Cancer Imaging Archive from 274 patients.
+In particular, there are 220 high grade subjects (HG) and 54 low grade subjects (LG): the purpose of a grading system for the tumors is to indicate the growth rate and how much is likely the spread into the whole brain. 
+
+Brain tumors are classified on a scale from 1 to 4: the ones corresponding to a spread level of 1 or 2 are considered LG, while the ones classified as level 3 or 4 are indicated as HG and are the most aggressive and malignant brain tumors\cite{grade_cancer}.
+
+\vspace{2mm} %5mm vertical space
+Figure~\ref{fig:low_high} shows a $T_{1c}$ slice and the relative tumor area from two different patients: the first one (above) is a high grade subject while the second one (below) belongs to a low grade subject. Looking at this example it is easy to understand that the tumor grade isn't just a measure of the overall dimensions: it's a measure of how aggressive is this disease based on the appearance of the cells under a microscope and how malignant they look (cells and the organization of the tissue of an high grade do not look like normal cells). \cite{grade_cancer2}.
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics[height=0.42\textheight]{images/low_high_differences.pdf}
+\caption[$T_{1c}$ slice in HG and LG subjects ]{$T_{1c}$ tumor slice in HG (above) and LG (below) subjects.}
+\label{fig:low_high}
+\end{figure}
+
+\vspace{2mm} %5mm vertical space
+Since we believe it is important to maintain the balance between HG and LG subjects during training and evaluation phases, we applied stratified sampling, following the approach of \cite{Xue_2018}, in the splitting of the dataset in three different sets: training (80\% of the original dataset was assigned to this set), validation (10\%) and test (10\%) with 219 patients assigned to the first set, 27 to the validation one and 28 to the test.
+
+Stratified sampling was used in order to show to the model, during training, the right amount of HG and LG without the risk of wrong generations once the model would have been used with the test set. 
+
+\vspace{2mm} %5mm vertical space
+For example, let's suppose that a generator of~\ac{MRI} scans is trained with a set containing only LG tumors. Then, when it comes the time to test this model with a new set, with completely unseen images of HG and LG tumors, our trained model would probably be able to generate good results when it receives a LG patient as input, while it would produce wrong synthesized images, especially in the tumor area, when it comes to generate the missing modality for a HG patient.
+
+
+This explains why, in the splitting of the dataset, we chose to maintain a balance in the number of instances belonging to the two types of patient: stratified sampling allowed us to have HG and LG subjects represented with approximately equal proportions in all the three subsets, as it is shown in Figure~\ref{fig:barplot_split}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.51\textheight]{images/barplot_split.pdf}
+\caption[Data distribution by set and tumor grade]{Data distribution by set and tumor grade, after the split of BRATS2015 in Training (80\%), Validation (10\%) and Test (10\%) using stratified sampling.}
+\label{fig:barplot_split}
+\end{figure}
+
+BRATS2015 contains basically images and few additional information about the patient: a unique identifier, not much useful, since data are anonymized (beside the fact we used it to find the correct ground truth folder of each volume), and whether the subject is a low grade or a high grade. 
+
+\subsection{Images}
+\label{sec:images_dataset}
+The images are the most interesting part of the dataset: in total there are 1370 volumes and since, from each volume of the brain, it's possible to extract 155 2D axial slices, with dimension 240x240 (an axial slice is one of the possible perspectives from which is possible to represent the brain in two dimensions. The other two principal planes are the coronal and sagittal ones.), the number of available images is 212.350. 
+The images are grayscale, so, instead of multiple color channels, there is just one channel that carries information and each value of a pixel represents only an amount of light.
+
+\vspace{2mm} %5mm vertical space
+Per each patient there are 5 volumes: 4 of these contain the different~\ac{MRI} sequences of the dataset ($T_{1}$, $T_{2}$, $T_{1\textit{c}}$, $T_{2\textit{flair}}$) while the last volume corresponds to the segmented area of the tumor (in BRATS2015 this volume is called \textit{Ground Truth}).
+ 
+\begin{figure}
+\centering
+\includegraphics[height=0.74\textheight]{images/all_sequences2.pdf}
+\caption[The four MRI sequences: $T_{1}$, $T_{2}$, $T_{1\textit{c}}$, $T_{2\textit{flair}}$]{Brain MRI sequences - $T_{1}$, $T_{2}$, $T_{1\textit{c}}$, $T_{2\textit{flair}}$ - from four different patients.}
+\label{fig:all_sequences}
+\end{figure}
+
+The modalities contained in the dataset are some of the most commonly acquired MRI sequences: we already discussed about $T_{2}$-weighted ($T_{2}$) and $T_{2}$-fluid-attenuant inversion recovery ($T_{2\textit{flair}}$). In addition to these two, we have $T_{1}$-weighted ($T_{1}$) and $T_{1}$-with-contrast-enhanced ($T_{1\textit{c}}$).
+These four scans provide both redundant and complementary information about the imaged tissue and each one of this can give important and unique insights about the interested zone, in our case the brain.
+
+\vspace{2mm} %5mm vertical space
+$T_{1}$ and $T_{2flair}$, for example, give meaningful information of the edema region of tumor in case of glioblastoma. $T_{1c}$ on the other hand can become become very useful when a contrast agent can be used with the patient, since it defines a clear demarcation of enhancing region around the tumor that can be used as an indicator to assess growth/shrinkage. $T_{2}$ is used instead to detect hyperintensities that can lead to the diagnosis of vascular dementia\cite{migan}.
+
+\vspace{2mm} %5mm vertical space
+The 5th type of image given in this dataset is the one representing the tumor area (in BRATS2015 every subject has a brain tumor) that was used in this work to evaluate the results obtained by the trained models, as it happens in the segmentation task.
+
+In segmentation though, these ground truths, made typically by one or more human experts, are used to quantify how good an automated segmentation is with respect to true tumor area. 
+
+The difference here is that we used the Ground Truth mainly as a mask applied to the synthesized images in order to discard the area of the brain not related to the tumor and then to compute the metrics and measure the quality of the generation only in that specific area, that is the most interesting and important one for the final diagnosis.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.19\textheight]{images/tumor.pdf}
+\caption[GT used as mask to segment the $T_{2\textit{flair}}$ tumor area]{$T_{2\textit{flair\ masked}}$: tumor area obtained using the Ground Truth as mask over $T_{2\textit{flair}}$.}
+\label{fig:tumor}
+\end{figure}
+
+\section{Preprocessing}
+\label{sec:preprocessing}
+As in almost every deep learning pipeline, some preprocessing of the dataset was required: the details of the transformations applied to prepare the data in the proper manner are presented below.
+
+\subsection{Cropping}
+\label{sec:cropping}
+All the images in the dataset were first center cropped: the outer parts of each volume were removed while the central region was retained along each dimension.
+
+This first preprocessing step reduced the dimensions of each volume from [240, 240, 155] to [180, 180, 128] but it's important to notice that no useful information was removed but black voxels, so only the outer parts of the~\ac{MRI} with zero intensity value.
+This cropping brought also the advantage of having less heavy data in terms of size: removing useless information (as the black pixels around the brain) from a large dataset means, when it comes to read the data, less time to load the images in memory and obviously less memory needed to cache everything.
+
+\vspace{2mm} %5mm vertical space
+We observed that not all the 155 slices are equally relevant to us: some of the most external ones in the volume are totally black images while some contain just few pixels with intensity value different from zero. 
+
+These images of course are meaningless for us since they contain neither enough information about the tumor nor significant brain structure that could be helpful to the~\ac{GAN} training: because  of this we reduced the number of slices from 155 to 128. Figure~\ref{fig:slices} shows an example of the first 48, out of 128, $T_{2}$ slices extracted from the volume of a subject, after the application of central cropping.
+
+\begin{figure}
+\centering
+\includegraphics[height=0.65\textheight]{images/slices2.pdf}
+\caption[An example of consecutive $T_{2}$ slices extracted from a volume]{An example of the first 48 $T_{2}$ slices extracted from a volume, after cropping it to a width of 180, height of 180 and depth of 128 (num. of axial slices).}
+\label{fig:slices}
+\end{figure}
+
+\subsection{Normalization}
+\label{sec:normalization}
+The motivation to normalize the images before feeding them into our models comes from the fact that in many machine algorithms it is required to have the same dynamic range, so the difference between the maximum pixel value and the minimum pixel value, per each image: in this way, by converting an input image to a range of pixel values that is more familiar and normal to the sense, it's possible to avoid undesired effects.
+
+\vspace{2mm} %5mm vertical space
+In our case we used a type of rescaling known as min-max scaling or min-max normalization where the transformation, since we're dealing with gray scale images, interested only one channel.
+
+\vspace{2mm} %5mm vertical space
+Min-max is the simplest normalization method and allows to bring the difference between the max value and the min value of an image to be in the range [a, b] using the following formula:
+
+%(Eqn.~\ref{eq:l1_loss}):
+\begin{equation} \label{eq:a_b_min_max}
+x' = a + \dfrac{(x - \min(x))(b - a)}{\max(x) - \min(x)}
+\end{equation}
+
+In our case we wanted to bring all the images to lie within the range of 0 to 1 by using the Formula~\ref{eq:a_b_min_max} that with a = 0 and b = 1 becomes:
+
+\begin{equation} \label{eq:min_max}
+x' = \dfrac{x - \min(x)}{\max(x) - \min(x)}
+\end{equation}
+
+where, given a volume of a subject, x is the original intensity value and x' is the new normalized voxel value.
+The min and max values were set to the values corresponding, respectively, to the 2nd and the 98th percentiles of the voxels intensities of the whole volume, to avoid the risk of using outliers in the normalization process: in fact we observed that in the dataset there are unusual high-intensity values due to pathologies and without this shrewdness these high values would have squashed the pixel range to always lie very close to zero.
+
+\vspace{2mm} %5mm vertical space
+Table~\ref{tab:before_norm} and ~\ref{tab:after_norm} show how much important was to apply this processing step before actually starting to work with the data. Three volumes are used as example: the first two rows correspond to the same modality, $T_{2}$, but different subjects while the 2nd and the 3rd row show minimum value, maximum value, 2nd percentile and 9th percentile for the $T_{2}$ and $T_{2flair}$ of the same patient.
+The voxels values shown can't be really used without applying some scaling to the intensity channel neither to compare images from the same modality nor to evaluate volumes from the same patient.
+
+\vspace{2mm}
+\begin{table}
+\centering
+\begin{tabular}{cccccc}
+\toprule
+Patient & Modality & Min value	& Max value & 2nd Percentile & 98th Percentile\\
+\midrule
+0011\_1 & $T_{2}$ & 0.0				& 1344.0 & 0.0 & 579.0\\
+117\_001 & $T_{2}$ & 0.0				& 2648.0 & 0.0 & 1013.0\\
+117\_001 & $T_{2flair}$ & 0.0				& 720.0 & 0.0 & 389.0\\
+
+\bottomrule	
+\end{tabular}
+\caption{Values from different volumes before normalization}
+\label{tab:before_norm}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{cccccc}
+\toprule
+Patient & Modality & Min value	& Max value & 2nd Percentile & 98th Percentile\\
+\midrule
+0011\_1 & $T_{2}$ & 0.0				& 1.0 & 0.0 & 1.0\\
+117\_001 & $T_{2}$ & 0.0				& 1.0 & 0.0 & 1.0\\
+117\_001 & $T_{2flair}$ & 0.0				& 1.0 & 0.0 & 1.0\\
+\bottomrule	
+\end{tabular}
+\caption{Values from different volumes after normalization}
+\label{tab:after_norm}
+\end{table}
+
+
+All the 128 slices belonging to the same person are normalized with respect to fixed percentile values: for example all the slices with 117\_001 as patient id and $T_{2flair}$ as type of modality will be rescaled by using Formula \ref{eq:min_max} where 389.0 (the 98th percentile) is the max value (instead of 720.0 that is an outlier value) and 0.0 (2nd percentile) is the min value. Results of the normalization are shown in Table~\ref{tab:after_norm}.
+
+\vspace{2mm} %5mm vertical space
+This transformation step in the preprocessing phase was necessary because not all the images had the same dynamic range since BRATS2015 contains scans from multiple sources: the~\ac{MRI} volumes were obtained in different hospitals and with different acquisition settings (even the sequences of the same subject). By rescaling the whole dataset we were able to obtain more homogeneity among images, ranging now between 0 and 1.
+
+
+\section{Summary}
+\label{sec:3rd_section_summary}
+In this chapter we presented some details about Magnetic Resonance Imaging, describing the problem of missing modalities, and the reason why we focused our attention on brain tumor MRI scans.
+
+We gave then an overview about the brain~\ac{MRI} dataset used in this work, BRATS2015, discussing how it is organized and which modalities it contains, showing also some figures to give an idea to the reader of the appearance of the different scans used to generate the missing modalities. 
+
+At the end of the chapter we described the preprocessing transformation useful to prepare the data before being fed into the models, whose architecture will be discussed in Chapter \ref{cha:4th_chapter}.

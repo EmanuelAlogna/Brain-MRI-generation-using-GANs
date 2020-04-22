@@ -1,0 +1,413 @@
+\chapter{Results}
+\label{cha:5th_chapter}
+In this chapter we report the results from our work: in Section \ref{sec:quantitative_results} are summarized the quantitative performances obtained by all the model trained, while in Section \ref{sec:qualitative_results} we illustrate, in a qualitative way, the ability of our \ac{GAN}s to synthesize MRI sequences, using the modalities contained in BRATS2015. 
+
+In Section \ref{sec:results_evaluation} we provide our discussion on the results by considering them in the same order they are presented.
+
+\section{Quantitative Results}
+\label{sec:quantitative_results}
+
+In this section we show the quantitative results reached by all the models we experimented with.
+In total we trained 14 models using the three \ac{GAN}s presented in Chapter \ref{cha:4th_chapter}. Subsection \ref{subsec:t1_gen} shows the results obtained by four of these models, trained to generate $T_1$ slices.
+In Subsection \ref{subsec:t2_gen} we present the ones relative to the generation of $T_2$ while Subsections \ref{subsec:t1c_gen} and \ref{subsec:t2flair_gen} contain the performances of the generative models trained to synthesize, respectively, $T_{1c}$ and $T_{2flair}$ slices. The tables reported in these subsections present three metrics used for the evaluation of the whole image, MSE, PSNR and SSIM, but also $\mathrm{MSE_{tumor}}$ and $\mathrm{PSNR_{tumor}}$, computed considering only the generated tumor area.
+
+\vspace{5mm} %5mm vertical space
+The pix2pix models (Subsection \ref{subsec:pix2pix_architecture}) are called P2P (where P2P$(T_{1c \rightarrow 1})$ is trained to generate $T_1$ from $T_{1c}$) while, for example, MI-P2P{$_{T_2}$} is the MI-pix2pix \ac{GAN} (Subsection \ref{subsec:mi_pix2pix_architecture}) generating ${T_2}$ from ($T_{1}$, $T_{1c}$, $T_{2flair}$).
+
+\vspace{5mm} %5mm vertical space
+Moreover, we introduced some baselines in order to understand if our single-input models were actually learning to generate a missing modality $y'$ or if, instead, they were only exploiting the similarities between the input and the output: basically we wanted to evaluate if there was more similarity between the generated image $y'$ and $y$ than between $x$ and $y$, in order to understand if the \ac{GAN} was correctly elaborating the image received in input. Therefore, Baseline$(x,y)$ corresponds to the values calculated by applying the metrics between modality $x$ and modality $y$.
+
+In the tables of the following subsections, values in boldface represent best performance values. The reported values are mean $\pm$ std.
+
+%%%%%%%%%%%%%%% T1 generation %%%%%%%%%%%%%%%%
+\subsection{Generation of \texorpdfstring{${T_1}$}{TEXT}}
+\label{subsec:t1_gen}
+
+Four models were trained to generate the missing modality $T_1$: two unimodal \ac{GAN}s with different inputs ($T_2$ and $T_{1c}$) and two multimodal models. We choose to train different pix2pix models to understand how much good could have performed a single-input network that receives an image highly similar to the target ($T_{1c}$) compared to $\mathrm{P2P \ (T_{2 \rightarrow 1})}$.
+The results are presented in Table \ref{tab:t1}.
+
+\begin{table}[H]
+\centering
+\fontsize{8}{18}\selectfont
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{l|c|c|c|c|c}
+\toprule
+\textbf{Model} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline
+$\mathrm{Baseline\ (T_{2,1})}$ & $\mathrm{0.0396\pm0.0275}$ &
+$\mathrm{15.3286\pm4.2134}$ &
+$\mathrm{0.5054\pm0.2116}$ & $\mathrm{0.0594\pm0.0523}$ & $\mathrm{13.6678\pm3.6085}$\\
+
+$\mathrm{P2P \ (T_{2 \rightarrow 1})}$ & $\mathrm{0.0060\pm0.0046}$ & $\mathrm{23.4967\pm3.6754}$  & $\mathrm{0.8112\pm0.1004}$ & $\mathrm{0.0199\pm0.0187}$ & $\mathrm{18.5047\pm3.7607}$\\
+
+$\mathrm{Baseline\ (T_{1c,1})}$ & $\mathrm{0.0058\pm0.0050}$ & $\mathrm{23.8431\pm4.0912}$  & $\mathrm{0.8096\pm0.0984}$ & $\mathrm{0.0173\pm0.0216}$ & $\mathrm{20.1544\pm5.0543}$\\
+
+$\mathrm{P2P \ (T_{1c \rightarrow 1})}$ & $\mathrm{0.0044\pm0.0041}$ & $\mathrm{25.0680\pm3.8652}$  & $\mathrm{0.8403\pm0.0856}$ & $\mathrm{0.0114\pm0.0143}$ & $\mathrm{21.4485\pm4.3380}$\\
+
+$\mathrm{MI{-}P2P_{T_{1}}}$ & $\mathrm{0.0044\pm0.0040}$ & $\mathrm{24.9339\pm3.6983}$  & $\mathrm{0.8413\pm0.0838}$ & $\mathrm{0.0113\pm0.0099}$ & $\mathrm{20.8938\pm3.6111}$\\
+
+$\mathrm{MI{-}GAN_{T_{1}}}$ & $\mathbf{0.0041\pm0.0038}$ & $\mathbf{25.2569\pm3.6512}$  & $\mathbf{0.8472\pm0.0830}$ & $\mathbf{0.0102\pm0.0097}$ & $\mathbf{21.5359\pm3.8620}$\\
+\midrule
+\end{tabular}
+\caption[Generation of $T_1$: performances on the test set]{Generation of $T_{1}$: performances on the test set.}
+\label{tab:t1}
+\end{table}
+
+%%%%%%%%%%%%%%% T2 generation %%%%%%%%%%%%%%%
+\subsection{Generation of \texorpdfstring{${T_2}$}{TEXT}}
+\label{subsec:t2_gen}
+
+Also for the generation of $T_2$ we opted for training four models where two of these are unimodal \ac{GAN}s: the first one is a pix2pix trained to receive $T_1$ as input while the second one takes as input the $T_{2flair}$ modality, that captures more similar characteristics (of $T_2$) than $T_1$. The results are presented in Table \ref{tab:t2}.
+
+\begin{table}[H]
+\centering
+\fontsize{8}{18}\selectfont
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{l|c|c|c|c|c}
+\toprule
+\textbf{Model} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline	
+$\mathrm{Baseline\ (T_{1,2})}$ & $\mathrm{0.0396\pm0.0275}$  & $\mathrm{15.3286\pm4.2134}$ & $\mathrm{0.5054\pm0.2116}$ & $\mathrm{0.0594\pm0.0523}$ & $\mathrm{13.6678\pm3.6085}$\\
+
+$\mathrm{P2P \ (T_{1 \rightarrow 2})}$ & $\mathrm{0.0100\pm0.0074}$ & $\mathrm{21.3182\pm3.8023}$  & $\mathrm{0.7521\pm0.1247}$ & $\mathrm{0.0476\pm0.0397}$ & $\mathrm{14.3652\pm3.3523}$\\
+
+$\mathrm{Baseline\ (T_{2f,2})}$ & $\mathrm{0.0275\pm0.0199}$ & $\mathrm{16.8268\pm3.9727}$  & $\mathrm{0.6262\pm0.1597}$ & $\mathrm{0.0464\pm0.0500}$ & $\mathrm{15.1591\pm4.0428}$\\
+
+$\mathrm{P2P \ (T_{2flair \rightarrow 2})}$ & $\mathrm{0.0087\pm0.0076}$ & $\mathrm{21.9227\pm3.7021}$  & $\mathrm{0.7567\pm0.1287}$ & $\mathrm{0.0256\pm0.0242}$ & $\mathrm{17.3035\pm3.4584}$\\
+
+$\mathrm{MI{-}P2P_{T_{2}}}$ & $\mathbf{0.0073\pm0.0063}$ & $\mathbf{22.7645\pm3.8272}$  & $\mathbf{0.8005\pm0.1112}$ & $\mathrm{0.0207\pm0.0167}$ & $\mathbf{18.1305\pm3.5930}$\\
+
+$\mathrm{MI{-}GAN_{T_{2}}}$ & $\mathrm{0.0077\pm0.0061}$ & $\mathrm{22.3719\pm3.5290}$  & $\mathrm{0.7835\pm0.1141}$ & $\mathbf{0.0205\pm0.0167}$ & $\mathrm{18.0725\pm3.3763}$\\
+\midrule
+\end{tabular}
+\caption[Generation of $T_2$: performances on the test set]{Generation of $T_{2}$: performances on the test set.}
+\label{tab:t2}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%% T1c generation %%%%%%%%%%%%%%%%%
+\subsection{Generation of \texorpdfstring{${T_{1c}}$}{TEXT}}
+\label{subsec:t1c_gen}
+
+Table \ref{tab:t1c} shows instead the performances obtained by three models trained to generate $T_{1c}$ slices: one pix2pix model and two multi-input models.
+We choose $T_{1}$ as input modality for the unimodal \ac{GAN} because it is the more similar sequence, among the ones available, to the target $T_{1c}$.
+
+\begin{table}[H]
+\centering
+\fontsize{8}{18}\selectfont
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{l|c|c|c|c|c}
+\toprule
+\textbf{Model} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline
+
+\hline
+$\mathrm{Baseline\ (T_{1,1c})}$ & $\mathrm{0.0058\pm0.0050}$ & $\mathrm{23.8431\pm4.0912}$  & $\mathrm{0.8096\pm0.0984}$ & $\mathrm{0.0173\pm0.0216}$ & $\mathrm{20.1544\pm5.0543}$\\
+
+
+$\mathrm{P2P \ (T_{1 \rightarrow 1c})}$ & $\mathbf{0.0051\pm0.0048}$ & $\mathbf{24.6165\pm4.0755}$  & $\mathbf{0.8139\pm0.0996}$ & $\mathbf{0.0155\pm0.0199}$ & $\mathbf{20.6981\pm4.9762}$\\
+
+$\mathrm{MI{-}P2P_{T_{1c}}}$ & $\mathrm{0.0052\pm0.0040}$ & $\mathrm{24.1597\pm3.8631}$  & $\mathrm{0.8110\pm0.0963}$ & $\mathrm{0.0168\pm0.0172}$ & $\mathrm{19.8441\pm4.6258}$\\
+
+$\mathrm{MI{-}GAN_{T_{1c}}}$ & $\mathrm{0.0054\pm0.0040}$ & $\mathrm{23.9242\pm3.6958}$  & $\mathrm{0.8027\pm0.1003}$ & $\mathrm{0.0157\pm0.0162}$ & $\mathrm{19.9779\pm4.3568}$\\
+\midrule
+\end{tabular}
+\caption[Generation of $T_{1c}$: performances on the test set]{Generation of $T_{1c}$: performances on the test set.}
+\label{tab:t1c}
+\end{table}
+
+\subsection{Generation of \texorpdfstring{${T_{2flair}}$}{TEXT}}
+\label{subsec:t2flair_gen}
+
+Tables \ref{tab:t2flair} and \ref{tab:dice} summarize the performances reached by the models synthesizing $T_{2flair}$: in particular \ref{tab:dice} shows the additional metric we implemented to evaluate the quality of the generated tumor area using a single-input segmentation model from \cite{giacomello2019brain}. The DSC is calculated between the ground truth and the segmentation of our synthesized images. Furthermore, a reference DSC score is computed between the ground truth and the segmentation of the original slice from BRATS2015.
+
+\vspace{5mm}
+As in Subsection \ref{subsec:t1c_gen}, also here we choose to train only one pix2pix model, using as input $T_{2}$ that is the more similar sequence, among the ones available, to the target.
+
+%%%%%%%%%%%%%%% T2flair generation %%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\fontsize{8}{18}\selectfont
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{Model} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline
+$\mathrm{Baseline\ (T_{2,2f})}$ & $\mathrm{0.0275\pm0.0199}$ & $\mathrm{16.8268\pm3.9727}$  & $\mathrm{0.6262\pm0.1597}$ & $\mathrm{0.0464\pm0.0500}$ & $\mathrm{15.1591\pm4.0428}$\\
+
+$\mathrm{P2P \ (T_{2 \rightarrow 2flair})}$ & $\mathrm{0.0090\pm0.0065}$ & $\mathrm{21.5895\pm3.4831}$  & $\mathrm{0.7518\pm0.1211}$ & $\mathrm{0.0390\pm0.0463}$ & $\mathrm{15.9946\pm4.0459}$\\
+
+$\mathrm{MI{-}P2P_{T_{2flair}}}$ & $\mathbf{0.0069\pm0.0049}$ & $\mathbf{22.8165\pm3.7317}$  & $\mathbf{0.7772\pm0.1094}$ & $\mathbf{0.0221\pm0.0375}$ & $\mathbf{19.0374\pm4.1582}$\\
+
+$\mathrm{MI{-}GAN_{T_{2flair}}}$ & $\mathrm{0.0072\pm0.0050}$ & $\mathrm{22.5524\pm3.5655}$  & $\mathrm{0.7610\pm0.1175}$ & $\mathrm{0.0258\pm0.0285}$ & $\mathrm{17.4694\pm3.6137}$\\
+\midrule
+\end{tabular}
+\caption[Generation of $T_{2flair}$: performances on the test set]{Generation of $T_{2flair}$: performances on the test set.}
+\label{tab:t2flair}
+\end{table}
+
+%%%%%%%%%%%%%% DICE SCORE %%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\fontsize{11}{17}\selectfont
+%\begin{tabular}{p{3.5cm}<{\centering}|p{3.5cm}<{\centering}}
+\begin{tabular}{l|c}
+\toprule
+\textbf{Segmentation\  image\ } & $\mathbf{DSC_{tumor}}$\\
+\hline
+Original\ {${T_{2flair}}$} & $\mathrm{0.8053\pm0.1156}$\\
+\hline
+P2P$(T_{2 \rightarrow 2flair})$ & $\mathrm{0.6632\pm0.1608}$\\
+
+MI-P2P{$_{T_{2flair}}$} & $\mathbf{0.7427\pm0.1810}$\\
+
+MI-GAN{$_{T_{2flair}}$} & $\mathrm{0.6837\pm0.2136}$\\
+\midrule
+\end{tabular}
+\caption[Segmentation performances (on test set) using  $T_{2flair}$ predictions]{DSC performances, on the test set, obtained by comparing the ground truth and the segmentations, using segmentation model in \cite{giacomello2019brain}, of $T_{2flair}$ predictions.}
+\label{tab:dice}
+\end{table}
+
+\vspace{5mm}
+\noindent Additionally, in Table \ref{tab:epochs_training_time} we report the time, in epochs, taken to train our models.
+
+% pix2pix avg time= 65.5 epochs (but the best p2p took 34.25).
+% MI-GAN avg time= 37.5 epochs
+% MI-pix2pix avg time= 35.5 epochs
+%%%%%%%%%%%%%%% Epochs training %%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\fontsize{11}{19}\selectfont
+\begin{tabular}{l|c}
+\toprule
+\textbf{Model} & \textbf{Training time (epochs)}\\
+\hline
+P2P$(T_{2 \rightarrow 1})$ & 43\\
+P2P$(T_{1c \rightarrow 1})$ & 55\\
+\textrm{MI-P2P{$_{T_{1}}$}} & 40\\
+
+MI-GAN{$_{T_{1}}$} & 30\\
+\hline
+P2P$(T_{1 \rightarrow 2})$ & 70\\
+
+P2P$(T_{2flair \rightarrow 2})$ & 25\\
+
+\textrm{MI-P2P{$_{T_{2}}$}} & 35\\
+
+MI-GAN{$_{T_{2}}$} & 37\\
+\hline
+\textrm{P2P$(T_{1 \rightarrow 1c})$} & 42\\
+
+MI-P2P{$_{T_{1c}}$} & 50\\
+
+MI-GAN$_{T_{1c}}$ & 40\\
+\hline
+P2P$(T_{2 \rightarrow 2flair})$ & 27\\
+
+\textrm{MI-P2P{$_{T_{2flair}}$}} & 35\\
+
+MI-GAN{$_{T_{2flair}}$} & 25\\
+\midrule
+\end{tabular}
+\caption[Training time (in epochs) of every model]{Training time (in epochs) of the 14 models trained in this work.}
+\label{tab:epochs_training_time}
+\end{table}
+%%%%%%%%%%%%%%% Generated samples %%%%%%%%%%%%%%%%%%%%
+\section{Qualitative Results}
+\label{sec:qualitative_results}
+This sections presents the qualitative results from  the missing modalities synthesized by the networks (\ref{subsec:generated_samples}) and the segmentation results using our predictions (\ref{subsec:segmentation_results}).
+\subsection{Generated Samples}
+\label{subsec:generated_samples}
+Figures \ref{fig:pix2pix_t1} and \ref{fig:pix2pix_t2} illustrate the differences between the pix2pix models we trained to generate, respectively, $T_{1}$ and $T_{2}$ slices.
+
+In Figures \ref{fig:t1_gen}, \ref{fig:t2_gen}, \ref{fig:t1c_gen}, \ref{fig:t2flair_gen} are shown the generated images outputted by the models trained to synthesize, respectively, $T_{1}$, $T_{2}$, $T_{1c}$ and $T_{2flair}$. 
+Figures \ref{fig:t1_gen} and \ref{fig:t2_gen} contain predictions from MI-GAN, MI-pix2pix and only one of the two pix2pix models trained: we choose the one with more competitive results, compared to the other model.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.49\textheight]{images/pix2pix.t1.pdf}
+\caption[P2P$(T_{2 \rightarrow 1})$ and P2P$(T_{1c \rightarrow 1})$ predictions]{P2P$(T_{2 \rightarrow 1})$ and P2P$(T_{1c \rightarrow 1})$ predictions in two different subjects from the test set. $T_{1masked}$ is the original slice masked with the ground truth.}
+\label{fig:pix2pix_t1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.49\textheight]{images/pix2pix.t2.pdf}
+\caption[P2P$(T_{1 \rightarrow 2})$ and P2P$(T_{2flair \rightarrow 2})$ predictions]{P2P$(T_{1 \rightarrow 2})$ and P2P$(T_{2flair \rightarrow 2})$ predictions in two different subjects from the test. $T_{2masked}$ is the original slice masked with the ground truth.}
+\label{fig:pix2pix_t2}
+\end{figure}
+
+%The figures contain, from left to right: the original slice from the test set, the original slice masked with the ground truth (to extract the tumor area) and the two prediction of the models. 
+
+%%%%%%%%%%%%%%% T1 generation %%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{figure}[H]
+\centering
+
+\vspace{20mm}
+
+\includegraphics[width=0.635\textheight]{images/gen_t1.1.pdf}
+
+\vspace{2mm}
+
+\includegraphics[width=0.635\textheight]{images/gen_t1.2.pdf}
+\caption[Qualitative results from the generation of $T_{1}$]{Comparison between the original slices from $T_{1}$ and its predictions using P2P$(T_{1c \rightarrow 1})$, MI-P2P{$_{T_{1}}$} and MI-GAN{$_{T_{1}}$}. Each row corresponds to a different subject from the test set.}
+\label{fig:t1_gen}
+\end{figure}
+
+%%%%%%%%%%%%%%% T2 generation %%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{figure}[H]
+\centering
+
+\vspace{20mm}
+
+\includegraphics[width=0.635\textheight]{images/gen_t2.1.pdf}
+
+\vspace{2mm}
+
+\includegraphics[width=0.635\textheight]{images/gen_t2.2.pdf}
+\caption[Qualitative results from the generation of $T_{2}$]{Comparison between the original slices from $T_{2}$ and its predictions using P2P$(T_{2flair \rightarrow 2})$, MI-P2P{$_{T_{2}}$} and MI-GAN{$_{T_{2}}$}. Each row corresponds to a different subject from the test set.}
+\label{fig:t2_gen}
+\end{figure}
+
+%%%%%%%%%%%%%%% T1c generation %%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{figure}[H]
+\centering
+
+\vspace{20mm}
+
+
+\includegraphics[width=0.635\textheight]{images/gen_t1c.1.pdf}
+
+\vspace{2mm} 
+
+\includegraphics[width=0.635\textheight]{images/gen_t1c.2.pdf}
+\caption[Qualitative results from the generation of $T_{1c}$]{Comparison between the original slices from $T_{1c}$ and its predictions, using P2P$(T_{1 \rightarrow 1c})$, MI-P2P{$_{T_{1c}}$} and MI-GAN{$_{T_{1c}}$}. Each row corresponds to a different subject from the test set.}
+\label{fig:t1c_gen}
+\end{figure}
+
+%%%%%%%%%%%%%%% T2flair generation %%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{figure}[H]
+\centering
+
+\vspace{20mm}
+
+
+\includegraphics[width=0.635\textheight]{images/gen_t2flair.1.pdf}
+
+\vspace{2mm}
+
+\includegraphics[width=0.635\textheight]{images/gen_t2flair.2.pdf}
+\caption[Qualitative results from the generation of $T_{2flair}$]{Comparison between the original slices from $T_{2flair}$ and its predictions, using P2P$(T_{2 \rightarrow 2flair})$, MI-P2P{$_{T_{2flair}}$} and MI-GAN{$_{T_{2flair}}$}. Each row corresponds to a different subject from the test set.}
+\label{fig:t2flair_gen}
+\end{figure}
+
+%%%%%%%%%%%%%%% Qualitative results segm. %%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Segmentation using GAN Predictions}
+\label{subsec:segmentation_results}
+In Figure \ref{fig:segmentation_qualitative_results} are illustrated the results obtained by segmenting our synthesized missing modalities. 
+
+
+In particular we tested the $T_{2flair}$  single-input segmentation model from \cite{giacomello2019brain} using the predictions outputted by P2P$(T_{2 \rightarrow 2flair})$, MI-P2P{$_{T_{2flair}}$} and MI-GAN$_{T_{2flair}}$.
+We also show the segmentation obtained using the original $T_{2flair}$ slice from BRATS2015 and the Ground Truth, representing the true tumor area segmented by a domain expert.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.636\textheight]{images/segmentation_results1.pdf}
+%\includegraphics[width=0.635\textheight]{images/segmentation_results2.pdf}
+\caption[Segmentations using GAN predictions]{From left to right: ground truth and the segmentations from $T_{2flair}$, pix2pix, MI-pix2pix and MI-GAN. Each row corresponds to a different subject from the test set.}
+\label{fig:segmentation_qualitative_results}
+\end{figure}
+
+\section{Results Evaluation}
+\label{sec:results_evaluation}
+We conduct the analysis of the results in the same order they are presented in the previous sections. The first part of our discussion considers the quantitative results presented in Section \ref{sec:quantitative_results}. After that, we do some considerations on the qualitative results from the trained models, presented in Section \ref{sec:qualitative_results}. 
+
+\subsection{Quantitative Results Discussion}
+\label{subsec:metrics_discussion}
+
+\vspace{4mm} 
+\noindent\textbf{Pix2pix vs Baseline}
+
+\vspace{2mm}
+\noindent Tables \ref{tab:t1}, \ref{tab:t2}, \ref{tab:t1c}, \ref{tab:t2flair} confirm what we expected about the processing ability of the Generative Adversarial Networks implemented in this work: all the Baseline$(x,y)$ scores reported are outperformed by the respective pix2pix models, that receive as input a modality $x$ and generate the missing modality $y'$. 
+For example P2P$(T_{2 \rightarrow 2flair})$ performs better by 35\% in PSNR, 38\% in SSIM and 560\% in MSE with respect to Baseline$(T_{2}, T_{2flair})$, proving that our \ac{GAN}s aren't only outputting the input but they are extracting and processing the information of the image received, resulting in a higher similarity between the generated sample ($y'$) and the ground truth ($y$) than between $y$ and input $x$. 
+
+\vspace{6mm} 
+\noindent\textbf{Single-Input vs Multi-Input Synthesis}
+
+\vspace{2mm}
+\noindent We noticed that the multi-input models outperform the single-input models when the target missing modality are $T_{2}$ and $T_{2flair}$ while the unimodal generative models of the other two sequences we experimented with reach very competitive results with respect to the two multi-modal \ac{GAN}s. 
+
+In particular, P2P$(T_{1 \rightarrow 1c})$ performs better than MI-GAN and MI-pix2pix in all the evaluation metrics considered: compared to the first model it shows improvement of 3\% in PSNR, 1\% in SSIM and 6\% in MSE.
+These percentage increases can be attributed to the fact that $T_{1c}$ and $T_{1}$ are very similar, as confirmed by the values obtained by calculating the evaluation metrics between the two modalities (Baseline$(T_{1}, T_{1c})$). It means that in order to generate $T_{1c}$ slices, $T_{1}$ is the sequence with highest significance and the information that carries through the network is enough to produce a realistic synthesized image, without the contribution of $T_{2}$ and $T_{2flair}$.
+This was confirmed one more time by looking at Table \ref{tab:t1} where P2P$(T_{1c \rightarrow 1})$ has better performances compared to MI-P2P{$_{T_{1}}$} and competitive results with respect to MI-P2P{$_{T_{1}}$}, in both the overall area of the brain and the tumor area. 
+
+\vspace{5mm} %5mm vertical space
+Results from Tables \ref{tab:t2} and \ref{tab:t2flair} reinforce the hypothesis that multi-modal models are objectively better than uni-modal models except in the case in which a modality capturing highly similar characteristics to the ones of the target image is received as input by a single-input \ac{GAN}.
+
+
+MI-pix2pix outperformed pix2pix in the synthesis of both $T_{2}$ and $T_{2flair}$ (also the other many-to-one model, MI-GAN, showed better results with respect to pix2pix, in all the evaluation metrics): in particular, in the generation of $T_{2}$, MI-P2P{$_{T_{2flair}}$} outperformed  P2P$(T_{2flair \rightarrow 2})$ by 4\% in PSNR, 5\% in SSIM and 19\% in MSE despite the fact that $T_{2flair}$ is the closest sequence to $T_{2}$: this is because the input modality used, as confirmed by Baseline$(T_{2}, T_{2flair})$, doesn't contain enough information to produce, alone, a realistic image.
+
+\vspace{5mm} %5mm vertical space
+In Tables \ref{tab:t1} and \ref{tab:t2} we reported the performances scored by different pix2pix models. From the analysis we can confirm that, when the input modality is not as much informative as others, then the pix2pix model performs poorly, compared to all the other models.
+A clear example of this is represented in the synthesis of $T_{1}$, that is more similar to $T_{1c}$ than to $T_{2}$: P2P$(T_{2 \rightarrow 1})$ is outperformed by P2P$(T_{1c \rightarrow 1})$ (by 7\% in PSNR, 4\% in SSIM, 27\% in MSE, 16\% in PSNR$_{tumor}$ and 43\% in MSE$_{tumor}$) and by the multi-modal models.
+
+\vspace{6mm} 
+\noindent\textbf{MI-pix2pix vs MI-GAN}
+
+\vspace{2mm}
+\noindent We can also notice that MI-pix2pix seems to perform slightly better than MI-GAN in all the modalities with the exception of $T_{1}$ where MI-GAN is the most competitive model: proof that the real discriminant in the performances is not the architecture (and the loss) used but whether the model is single-input (and which modality takes as input) or multi-input.
+
+\vspace{6mm} 
+\noindent\textbf{Whole image vs Tumor area}
+
+\vspace{2mm}
+\noindent Furthermore, we observe that the results from the metrics computed on the tumor area are consistent with the values obtained by the evaluation of the whole image, even if they are not directly comparable, since, for example, PSNR$_{tumor}$ was calculated considering only the tumor area while PSNR takes into account both the brain area and the black pixels: so an higher value from PSNR doesn't mean that the overall quality of the generated brain is better than the synthesized tumor area, since the obtained score is boosted by the presence of black pixels in both the images used for the comparison.
+
+\vspace{6mm} 
+\noindent\textbf{DSC performances}
+
+\vspace{2mm}
+\noindent From the DSC values in Table \ref{tab:dice} we notice that the segmentations obtained by using predictions from MI-pix2pix reach good performances with respect to the original segmented slice (-8\% in DSC$_{tumor}$): DSC ranges from a minimum value of 0 and a maximum value of 1 but it has to evaluated by comparing it to the result reached by the segmentation of original image. In this sense we are overall satisfied with the results.
+
+\vspace{6mm} 
+\noindent\textbf{Further comments}
+
+\vspace{2mm}
+\noindent For what concerns the time spent to train the models, reported in \ref{tab:epochs_training_time}, we observe that a more similar input image to the target doesn't always imply a faster convergence from the \ac{GAN} and, as a consequence, a shorter training: indeed P2P$(T_{1c \rightarrow 1})$ took more time (55) than P2P$(T_{2 \rightarrow 1})$ (43).
+
+%It is worth to notice that
+
+\subsection{Visual Acknowledgment}
+\label{subsec:visual_acknowledgment}
+
+\vspace{5mm} %5mm vertical space
+The results discussed above indicate that unimodal \ac{GAN}s reach more competitive results when the input image used is the modality that presents the more similar characteristics to the ones of the target. This fact can be appreciated by a visual comparison of the predictions from the two models in Figures \ref{fig:pix2pix_t1} and \ref{fig:pix2pix_t2} where P2P$(T_{1c \rightarrow 1})$ and P2P$(T_{2flair \rightarrow 2})$ are able to synthesize a better tumor area than, respectively, P2P$(T_{2 \rightarrow 1})$ and P2P$(T_{1 \rightarrow 2})$.
+
+\vspace{5mm} %5mm vertical space
+Figures \ref{fig:t1_gen}, \ref{fig:t2_gen}, \ref{fig:t1c_gen}, \ref{fig:t2flair_gen} confirm the results observed through the evaluation metrics, even though we notice that in the case of the $T_{1}$ generation, where there isn't a model outperforming the others, it is objectively difficult to choose, qualitatively, one model over the others.
+For example, in \ref{fig:t1_gen}, the multi-input predictions from the first subject (1st row) seem to be qualitatively better than the one outputted by single-input model. On the other hand, predictions from the last patient (6th row) show that pix2pix was able to generate an image richer of low-level details, less blurred and more similar to the original slice, compared to the multi-modal predictions. 
+
+\vspace{5mm} %5mm vertical space
+Additionally, from rows 1 and 3 of Figure \ref{fig:t1c_gen} we can notice that no one of the predictions were able to synthesize correctly the white area belonging to the tumor: this is due to the fact that the missing $T_{1c}$ is a unique modality, obtained with the injection of a contrast agent into the body, and it has highly specific information that it is not present in any other sequences. 
+
+\vspace{5mm} %5mm vertical space
+Our models demonstrated to be able to generalize well through the whole test set and the predictions generated show the capacity of these \ac{GAN}s to synthesize realistic missing modalities with good quality in the low-level details, even if with the presence of few blurred artifacts.
+
+\vspace{5mm} %5mm vertical space
+Figures \ref{fig:segmentation_qualitative_results} indicates that the results analysed in Table \ref{tab:dice} are consistent with the segmentations produced using our predictions. As expected, the segmentation using the prediction from the most competitive model in the generation of $T_{2flair}$ is not as good as the one produced using the original image but we observed some cases (\ref{fig:segmentation_qualitative_results}, 2nd row) in which the ground truth was more similar to the segmentation coming from our predictions than to $T_{2flair}$ segmented: this is motivated by the fact that our predictions processed and incorporated information belonging to other modalities and not present in the original $T_{2flair}$.
+
+\section{Summary}
+\label{sec:5th_section_summary}
+In this chapter we presented our results reporting all the scores obtained by evaluating our models on the test set: we showed the performances of the model through all the evaluation metrics implemented.
+
+Then, for providing a visual comparison of the generated images, we showed a set of predictions outputted by our \ac{GAN}s and, in addition,  the outputs of the segmentation model from \cite{giacomello2019brain} that took as input our $T_{2flair}$ predictions.
+
+At the end of the chapter we discussed in detail the results, in both a quantitative and qualitative way and we made some considerations about the advantage of using multimodal networks instead of the unimodal ones in order to leverage the information contained in all the available sequences. Single-input though that demonstrated to reach competitive results, compared to the multi-input scenario, in the case in which is received as input an image that is highly similar with respect to the target sequence. By observing the results, we understood that the real discriminant in the performances was the number of sequences given as input to the models, rather than the architecture and loss used.
+
+In the next chapter, we analyse our trained models by performing some experiments with the generator networks.

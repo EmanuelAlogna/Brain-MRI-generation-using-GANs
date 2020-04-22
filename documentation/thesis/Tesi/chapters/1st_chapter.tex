@@ -1,0 +1,53 @@
+\chapter{Introduction}
+\label{cha:first_chapter}
+Medical imaging is crucial for clinical analysis and medical intervention since it gives important insights about some diseases whose structures might be hidden by the skin or by the bones. 
+One of the most common techniques used nowadays is the Magnetic Resonance Imaging (~\ac{MRI}), ubiquitous in hospitals and medical centers, first because of its non-invasive nature, since, differently from other imaging technologies, doesn't make use of X-ray radiography and secondly because of the recent improvements in the software and hardware instrumentation used.
+In this type of imaging, various sequences (or modalities) can be acquired and each sequence can give useful and different insights about a particular problem of the patient. For example the $T_{1}$-weighted sequence can distinguish between gray and white matter tissues while $T_{2}$-weighted is more indicated to highlight fluid from cortical issue.
+
+\vspace{5mm} %5mm vertical space
+The problem about MRI is that sometimes there isn't the possibility to acquire all the sequences that would be required in order to diagnose a disease and this is due to different reasons: sometimes there isn't enough time to collect all the needed sequences, sometimes it's too expensive to acquire all of them. Furthermore, missing sequences might occur because of allergies in the patient that don't allow to obtain modalities where an exogenous contrast agent, a substance useful to increase the contrast between structures or fluids within the target area, is used to make the image clearer. It can also happen that, for a given patient, some scans might be unusable due to the presence of errors, corruptions or machine settings not defined in the proper way\cite{migan}.
+
+\vspace{5mm} %5mm vertical space
+It would be useful, then, to find a way to generate a prediction of the missing sequences by using the modalities already acquired for a given patient.
+These generated predictions then could be used either as direct aid to the doctor that has to make a diagnosis for a patient that maybe can't have injected into his body any kind of contrast agent, or could be used as one of the input pieces of a bigger pipeline.
+
+\vspace{5mm} %5mm vertical space
+Thanks to the recent improvements in Machine Learning, but more in particular in the~\ac{DL} field, the generation of missing modalities has become an objective feasible to reach, both in terms of efficiency of the obtained result and in terms of time spent in order to reach something meaningful.
+
+\vspace{5mm} %5mm vertical space
+In the last few years interest toward Machine Learning and Deep Learning has grown exponentially: just to give an idea to the incredible spread that is having this~\ac{AI} research area, in the 2016 and 2017 over 400 contributions related to Deep Learning applied to Medical Image Analysis were published\cite{Yi_2019}.
+%In the \cite{review}
+It has been shown that~\ac{DL} has been able to reach very competitive results in many medical task: classification, detection, segmentation, registration of different areas and structures within the human body.
+Many progresses have been done and further are yet to come in order to reach results as accurate and precise as possible in crucial applications such as cancer cell classification, lesion detection, organ segmentation and image enhancement\cite{Litjens_2017}.
+
+\vspace{5mm} %5mm vertical space
+The most successful~\ac{DL} architecture in medical image analysis is the \ac{CNN}: a neural network with multiple hidden layers between the input and the output layers. The initial problem with this type of architecture was that researchers weren't able to train these deep neural networks in an efficient way.
+A breakthrough was the work described in\cite{dl} that represents a huge contribution to the field since the proposed CNN, called AlexNet, won the ImageNet competition in 2012 by a large margin. The peculiarity of AlexNet was that its competitive results and high performances were obtained in relative short time, due to the fact that the designer of this network made the training feasible by the utilization of a~\ac{GPU}.
+
+\vspace{5mm} %5mm vertical space
+Another important breakthrough in the field was represented by the introduction of Generative Adversarial Networks, a class of machine learning systems invented by Ian J. GoodFellow in 2014\cite{gan} that we used in this work to solve the problem of missing modalities.
+
+\section{Scope}
+\label{sec:scope}
+In this work we study the applicability of Generative Adversarial Networks to the domain of medical imaging, by focusing on the generation of brain MRI sequences in order to overcome the problem of missing or unusable modalities and so to avoid repeating the exams multiple times.
+In particular, we propose a detailed study on the predictive power of three different \ac{GAN} implemented: the first one is a unimodal model proposed by Isola et al. and called pix2pix \cite{pix2pix}, while the other two networks are MI-pix2pix, a multi-input version of pix2pix, and MI-GAN, a modified version of the MM-GAN proposed by Sharma et al. in \cite{migan}, adapted to the multi-input single-output scenario. 
+
+We evaluate, then, the results obtained from the trained networks by assessing the performances in both a qualitative way, so with human perception, and a quantitative way, through different metrics implemented to test the generated quality of the tumor area, that needs to be synthesized with high accuracy, as well as the overall quality of the whole image. 
+
+Moreover, for studying the capabilities of the network and how skip connections affect the generative process, we show how much the performances can deteriorate by switching off or perturbing the channels in the generator network.  
+
+The two main contributions of this work can be summarized as follows:
+
+\begin{itemize}
+\item We define and compare two multi-modal \ac{GAN}s, MI-pix2pix and MI-GAN, that receive the same number of inputs but have different architectures and use different loss functions.
+\item We present a systematic analysis of skip connections that extends the analysis of the generator architecture in \cite{pix2pix}.
+\end{itemize}
+
+
+\vspace{5mm} %5mm vertical space
+
+
+\section{Thesis Structure}
+\label{sec:third_section}
+In Chapter \ref{cha:2nd_chapter} we present the related work and the theoretical background needed to make more understandable the work discussed in the following chapters. Chapter \ref{cha:3rd_chapter} describes in detail the dataset used and how it has been preprocessed in order to make it work with our models.
+In Chapter \ref{cha:4th_chapter} we present to the reader the neural network architecture implemented, along with the training algorithm and the metrics that we decided to use in order to evaluate, quantitatively, the results obtained, that are presented in Chapter \ref{cha:5th_chapter}. In Chapter \ref{cha:6th_chapter} further experiments on our trained models are described. Finally, Chapter \ref{cha:7th_chapter} contains our general considerations about this work, a description of the open problems related to the topic and a discussion on possible applications and future develops.

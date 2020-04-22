@@ -1,0 +1,337 @@
+\chapter{Appendix: Further Results from Connections Analysis}
+\label{cha:first_appendix}
+
+In this Appendix we report additional (quantitative and qualitative) results obtained from the following experiments (in the same order as they are presented): 
+
+\begin{itemize}
+\item Skip Connections Analysis on P2P$(T_{2 \rightarrow 2flair})$ and MI-GAN{$_{T_{2flair}}$} with channels turned off.
+\item Skip Connections Analysis on P2P$(T_{2 \rightarrow 2flair})$ and MI-GAN{$_{T_{2flair}}$} with channels perturbed.
+\item Internal Connections Analysis on P2P$(T_{2 \rightarrow 2flair})$ and MI-GAN{$_{T_{2flair}}$} with channels turned off.
+\end{itemize}
+
+\noindent In the following tables, values in boldface represent best performance values. The reported values are mean $\pm$ std.
+
+%%%%%%%%%%%%%%%%  Channels turned off p2p 
+
+\newpage
+\begin{table}[H]
+\centering
+\caption[Quantitative results from turning off the skips in pix2pix]{Quantitative results from the Skip Connections Analysis on P2P$(T_{2 \rightarrow 2flair})$: skips are sequentially turned off.}
+\fontsize{8.5}{16}\selectfont
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l|c|c|c|c|c}
+\toprule
+\textbf{Skips off} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline
+
+[1,1,1,1,1,1,1] & $\mathrm{0.0090\pm0.0065}$ & $\mathbf{21.5895\pm3.4831}$  & $\mathbf{0.7518\pm0.1211}$ & $\mathbf{0.0390\pm0.0463}$ & $\mathrm{15.9946\pm4.0459}$\\
+
+[0,1,1,1,1,1,1] & $\mathbf{0.0090\pm0.0062}$ & $\mathrm{21.5423\pm3.3860}$  & $\mathrm{0.7515\pm0.1204}$ & $\mathrm{0.0391\pm0.0473}$ & $\mathbf{16.0047\pm4.0874}$\\
+
+[0,0,1,1,1,1,1] & $\mathrm{0.0099\pm0.0068}$ & $\mathrm{21.1858\pm3.6324}$  & $\mathrm{0.7436\pm0.1268}$ & $\mathrm{0.0464\pm0.0422}$ & $\mathrm{14.6891\pm3.6658}$\\
+
+[0,0,0,1,1,1,1] & $\mathrm{0.0139\pm0.0086}$ & $\mathrm{19.7127\pm3.7077}$  & $\mathrm{0.7069\pm0.1398}$ & $\mathrm{0.0792\pm0.0634}$ & $\mathrm{12.0341\pm3.1018}$\\
+
+[0,0,0,0,1,1,1] & $\mathrm{0.0147\pm0.0086}$ & $\mathrm{19.4145\pm3.5775}$  & $\mathrm{0.6591\pm0.1253}$ & $\mathrm{0.0845\pm0.0370}$ & $\mathrm{11.1662\pm2.0567}$\\
+
+[0,0,0,0,0,1,1] & $\mathrm{0.0160\pm0.0104}$ & $\mathrm{19.0200\pm3.4598}$  & $\mathrm{0.6440\pm0.1113}$ & $\mathrm{0.0440\pm0.0255}$ & $\mathrm{14.2132\pm2.3999}$\\
+
+[0,0,0,0,0,0,1] & $\mathrm{0.0494\pm0.0285}$ & $\mathrm{13.8789\pm2.8530}$  & $\mathrm{0.1962\pm0.0692}$ & $\mathrm{0.1423\pm0.0613}$ & $\mathrm{8.8606\pm1.9105}$\\
+
+[0,0,0,0,0,0,0] & $\mathrm{0.1229\pm0.0630}$ & $\mathrm{9.7545\pm2.5459}$  & $\mathrm{-0.0072\pm0.0352}$ & $\mathrm{0.3883\pm0.1420}$ & $\mathrm{4.3978\pm1.6224}$\\
+\hline
+[1,1,1,1,1,1,1] & $\mathbf{0.0090\pm0.0065}$ & $\mathbf{21.5895\pm3.4831}$  & $\mathbf{0.7518\pm0.1211}$ & $\mathbf{0.0390\pm0.0463}$ & $\mathbf{15.9946\pm4.0459}$\\
+
+[1,1,1,1,1,1,0] & $\mathrm{0.0155\pm0.0085}$ & $\mathrm{18.8593\pm2.9462}$  & $\mathrm{0.6954\pm0.1149}$ & $\mathrm{0.0682\pm0.0726}$ & $\mathrm{13.1789\pm3.6046}$\\
+
+[1,1,1,1,1,0,0] & $\mathrm{0.0431\pm0.0194}$ & $\mathrm{14.1364\pm2.1434}$  & $\mathrm{0.3764\pm0.1560}$ & $\mathrm{0.1378\pm0.1250}$ & $\mathrm{9.9799\pm3.6409}$\\
+
+[1,1,1,1,0,0,0] & $\mathrm{0.0380\pm0.0187}$ & $\mathrm{14.7498\pm2.2690}$  & $\mathrm{0.3761\pm0.1271}$ & $\mathrm{0.0915\pm0.0927}$ & $\mathrm{11.9744\pm3.7576}$\\
+
+[1,1,1,0,0,0,0] & $\mathrm{0.0789\pm0.0286}$ & $\mathrm{11.3898\pm1.9330}$  & $\mathrm{0.1219\pm0.0759}$ & $\mathrm{0.1838\pm0.1397}$ & $\mathrm{8.3547\pm3.0633}$\\
+
+[1,1,0,0,0,0,0] & $\mathrm{0.0982\pm0.0319}$ & $\mathrm{10.3641\pm1.7303}$  & $\mathrm{0.0404\pm0.0606}$ & $\mathrm{0.2792\pm0.1765}$ & $\mathrm{6.1384\pm2.1748}$\\
+
+[1,0,0,0,0,0,0] & $\mathrm{0.0929\pm0.0335}$ & $\mathrm{10.5920\pm1.5696}$  & $\mathrm{0.0489\pm0.0610}$ & $\mathrm{0.2497\pm0.1228}$ & $\mathrm{6.4492\pm1.8823}$\\
+
+[0,0,0,0,0,0,0] & $\mathrm{0.1229\pm0.0630}$ & $\mathrm{9.7545\pm2.5459}$  & $\mathrm{-0.0072\pm0.0352}$ & $\mathrm{0.3883\pm0.1420}$ & $\mathrm{4.3978\pm1.6224}$\\
+\midrule
+\end{tabular}
+\label{tab:quantitative_channels_off_p2p}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\caption[Qualitative results from turning off the skips in pix2pix]{Qualitative results from the Skip Connections Analysis on P2P$(T_{2 \rightarrow 2flair})$: skips are sequentially turned off. \textit{Prediction} corresponds to config.[1111111]}
+\includegraphics[width=0.635\textheight]{images/skips_p2p.pdf}
+
+\label{fig:qualitative_channels_off_p2p}
+\end{figure}
+
+%%%%%%%%%%%%%%%%  Channels turned off MI-GAN 
+
+\newpage
+
+\begin{table}[H]
+\centering
+\caption[Quantitative results from turning off the skips in MI-GAN]{Quantitative results from the Skip Connections Analysis on MI-GAN{$_{T_{2flair}}$}: skips are sequentially turned off.}
+\fontsize{8.5}{16}\selectfont
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l|c|c|c|c|c}
+\toprule
+\textbf{Skips off} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+%\begin{tabular}[l]{@{}l@{}}\textbf{Channels}\\ %\textbf{activation}\end{tabular} & \textbf{MSE} & \textbf{PSNR} & %\textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline
+
+[1,1,1,1,1,1,1] & $\mathbf{0.0072\pm0.0050}$ & $\mathbf{22.5524\pm3.5655}$  & $\mathbf{0.7610\pm0.1175}$ & $\mathbf{0.0258\pm0.0285}$ & $\mathbf{17.4694\pm3.6137}$\\
+
+[0,1,1,1,1,1,1] & $\mathrm{0.0081\pm0.0051}$ & $\mathrm{21.9370\pm3.3825}$  & $\mathrm{0.7439\pm0.1210}$ & $\mathrm{0.0277\pm0.0305}$ & $\mathrm{17.1080\pm3.5332}$\\
+
+[0,0,1,1,1,1,1] & $\mathrm{0.0100\pm0.0065}$ & $\mathrm{21.0970\pm3.6387}$  & $\mathrm{0.7375\pm0.1233}$ & $\mathrm{0.0346\pm0.0165}$ & $\mathrm{15.1511\pm2.3996}$\\
+
+[0,0,0,1,1,1,1] & $\mathrm{0.0138\pm0.0069}$ & $\mathrm{19.3884\pm3.1246}$  & $\mathrm{0.6734\pm0.1387}$ & $\mathrm{0.0496\pm0.0448}$ & $\mathrm{14.2094\pm3.3076}$\\
+
+[0,0,0,0,1,1,1] & $\mathrm{0.0109\pm0.0074}$ & $\mathrm{20.8007\pm3.7417}$  & $\mathrm{0.7324\pm0.1244}$ & $\mathrm{0.0331\pm0.0157}$ & $\mathrm{15.3792\pm2.5432}$\\
+
+[0,0,0,0,0,1,1] & $\mathrm{0.0125\pm0.0072}$ & $\mathrm{19.8870\pm2.9944}$  & $\mathrm{0.5906\pm0.0975}$ & $\mathrm{0.0389\pm0.0172}$ & $\mathrm{14.5971\pm2.2820}$\\
+
+[0,0,0,0,0,0,1] & $\mathrm{0.0273\pm0.0109}$ & $\mathrm{16.0275\pm1.8843}$  & $\mathrm{0.1886\pm0.0422}$ & $\mathrm{0.1012\pm0.0370}$ & $\mathrm{10.2183\pm1.5814}$\\
+
+[0,0,0,0,0,0,0] & $\mathrm{0.1294\pm0.0434}$ & $\mathrm{9.2003\pm1.8129}$  & $\mathrm{0.0039\pm0.0061}$ & $\mathrm{0.3872\pm0.1252}$ & $\mathrm{4.3380\pm1.3904}$\\
+\hline
+[1,1,1,1,1,1,1] & $\mathbf{0.0072\pm0.0050}$ & $\mathbf{22.5524\pm3.5655}$  & $\mathbf{0.7610\pm0.1175}$ & $\mathbf{0.0258\pm0.0285}$ & $\mathbf{17.4694\pm3.6137}$\\
+
+[1,1,1,1,1,1,0] & $\mathrm{0.0077\pm0.0051}$ & $\mathrm{22.1638\pm3.3988}$  & $\mathrm{0.7566\pm0.1170}$ & $\mathrm{0.0301\pm0.0335}$ & $\mathrm{16.7878\pm3.5362}$\\
+
+[1,1,1,1,1,0,0] & $\mathrm{0.0424\pm0.0213}$ & $\mathrm{14.5579\pm3.3720}$  & $\mathrm{0.4903\pm0.1508}$ & $\mathrm{0.1013\pm0.0885}$ & $\mathrm{11.2495\pm3.3876}$\\
+
+[1,1,1,1,0,0,0] & $\mathrm{0.0886\pm0.0293}$ & $\mathrm{10.8085\pm1.6658}$  & $\mathrm{0.0805\pm0.0646}$ & $\mathrm{0.2480\pm0.1308}$ & $\mathrm{6.4845\pm1.8742}$\\
+
+[1,1,1,0,0,0,0] & $\mathrm{0.1157\pm0.0352}$ & $\mathrm{9.6557\pm1.8085}$  & $\mathrm{-0.0183\pm0.0419}$ & $\mathrm{0.3456\pm0.1628}$ & $\mathrm{4.9657\pm1.6754}$\\
+
+[1,1,0,0,0,0,0] & $\mathrm{0.1266\pm0.0397}$ & $\mathrm{9.2731\pm1.8176}$  & $\mathrm{-0.0275\pm0.0328}$ & $\mathrm{0.3742\pm0.1696}$ & $\mathrm{4.6018\pm1.6302}$\\
+
+[1,0,0,0,0,0,0] & $\mathrm{0.1176\pm0.0398}$ & $\mathrm{9.6350\pm1.9156}$  & $\mathrm{0.0060\pm0.0162}$ & $\mathrm{0.3659\pm0.1532}$ & $\mathrm{4.6860\pm1.6421}$\\
+
+[0,0,0,0,0,0,0] & $\mathrm{0.1294\pm0.0434}$ & $\mathrm{9.2003\pm1.8129}$  & $\mathrm{0.0039\pm0.0061}$ & $\mathrm{0.3872\pm0.1252}$ & $\mathrm{4.3380\pm1.3904}$\\
+\midrule
+\end{tabular}
+\label{tab:quantitative_channels_off_migan}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\caption[Qualitative results from turning off the skips in MI-GAN]{Qualitative results from the Skip Connections Analysis on MI-GAN{$_{T_{2flair}}$}: skips are sequentially turned off. \textit{Prediction} corresponds to config.[1111111]}
+\includegraphics[width=0.635\textheight]{images/skips_migan.pdf}
+\label{fig:qualitative_channels_off_migan}
+\end{figure}
+
+%%%%%%%%%%%%%%%%  Channels perturbed p2p 
+
+\begin{table}[H]
+\centering
+\caption[Quantitative results from skips perturbation in pix2pix]{Quantitative results from the Skip Connections Analysis on P2P$(T_{2 \rightarrow 2flair})$: skips are sequentially perturbed.}
+\fontsize{8.5}{16}\selectfont
+\setlength{\tabcolsep}{3.8pt}
+\begin{tabular}{l|c|c|c|c|c}
+\toprule
+\textbf{Img.in Skips} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline
+
+[AAAAAAA] & $\mathbf{0.0090\pm0.0065}$ & $\mathbf{21.5895\pm3.4831}$  & $\mathbf{0.7518\pm0.1211}$ & $\mathbf{0.0390\pm0.0463}$ & $\mathbf{15.9946\pm4.0459}$\\
+
+[BAAAAAA] & $\mathrm{0.0091\pm0.0064}$ & $\mathrm{21.5235\pm3.4479}$  & $\mathrm{0.7513\pm0.1210}$ & $\mathrm{0.0396\pm0.0460}$ & $\mathrm{15.8619\pm3.9731}$\\
+
+[BBAAAAA] & $\mathrm{0.0104\pm0.0069}$ & $\mathrm{20.8839\pm3.4477}$  & $\mathrm{0.7383\pm0.1270}$ & $\mathrm{0.0505\pm0.0435}$ & $\mathrm{14.2265\pm3.4858}$\\
+
+[BBBAAAA] & $\mathrm{0.0158\pm0.0087}$ & $\mathrm{18.8661\pm3.0820}$  & $\mathrm{0.6812\pm0.1324}$ & $\mathrm{0.0802\pm0.0542}$ & $\mathrm{11.9409\pm3.2647}$\\
+
+[BBBBAAA] & $\mathrm{0.0271\pm0.0137}$ & $\mathrm{16.3542\pm2.7462}$  & $\mathrm{0.5572\pm0.1547}$ & $\mathrm{0.0869\pm0.0610}$ & $\mathrm{11.6530\pm3.2698}$\\
+
+[BBBBBAA] & $\mathrm{0.0315\pm0.0140}$ & $\mathrm{15.5757\pm2.5717}$  & $\mathrm{0.5172\pm0.1395}$ & $\mathrm{0.0774\pm0.0680}$ & $\mathrm{12.4861\pm3.6620}$\\
+
+[BBBBBBA] & $\mathrm{0.0652\pm0.0291}$ & $\mathrm{12.5499\pm2.9432}$  & $\mathrm{0.3767\pm0.1851}$ & $\mathrm{0.1536\pm0.1036}$ & $\mathrm{9.1973\pm3.3652}$\\
+
+[BBBBBBB] & $\mathrm{0.0889\pm0.0391}$ & $\mathrm{11.1201\pm2.5996}$  & $\mathrm{0.3243\pm0.1796}$ & $\mathrm{0.1904\pm0.1628}$ & $\mathrm{8.8932\pm4.3094}$\\
+\hline
+[AAAAAAA] & $\mathbf{0.0090\pm0.0065}$ & $\mathbf{21.5895\pm3.4831}$  & $\mathbf{0.7518\pm0.1211}$ & $\mathbf{0.0390\pm0.0463}$ & $\mathbf{15.9946\pm4.0459}$\\
+
+[AAAAAAB] & $\mathrm{0.0143\pm0.0073}$ & $\mathrm{18.9923\pm2.2552}$  & $\mathrm{0.6101\pm0.1438}$ & $\mathrm{0.0572\pm0.0600}$ & $\mathrm{13.9484\pm3.6776}$\\
+
+[AAAAABB] & $\mathrm{0.0515\pm0.0250}$ & $\mathrm{13.4727\pm2.4009}$  & $\mathrm{0.4279\pm0.1666}$ & $\mathrm{0.1078\pm0.1090}$ & $\mathrm{11.5761\pm4.4659}$\\
+
+[AAAABBB] & $\mathrm{0.0494\pm0.0199}$ & $\mathrm{13.4762\pm2.0546}$  & $\mathrm{0.4102\pm0.1527}$ & $\mathrm{0.0797\pm0.0888}$ & $\mathrm{12.7056\pm3.9738}$\\
+
+[AAABBBB] & $\mathrm{0.0772\pm0.0358}$ & $\mathrm{11.7477\pm2.5649}$  & $\mathrm{0.3429\pm0.1745}$ & $\mathrm{0.1470\pm0.1443}$ & $\mathrm{10.5189\pm4.9880}$\\
+
+[AABBBBB] & $\mathrm{0.0849\pm0.0384}$ & $\mathrm{11.3273\pm2.5810}$  & $\mathrm{0.3230\pm0.1862}$ & $\mathrm{0.1747\pm0.1421}$ & $\mathrm{9.2217\pm4.1810}$\\
+
+[ABBBBBB] & $\mathrm{0.0932\pm0.0361}$ & $\mathrm{10.7810\pm2.2974}$  & $\mathrm{0.3084\pm0.1730}$ & $\mathrm{0.1833\pm0.1458}$ & $\mathrm{8.9416\pm4.0940}$\\
+
+[BBBBBBB] & $\mathrm{0.0889\pm0.0391}$ & $\mathrm{11.1201\pm2.5996}$  & $\mathrm{0.3243\pm0.1796}$ & $\mathrm{0.1904\pm0.1628}$ & $\mathrm{8.8932\pm4.3094}$\\
+\midrule
+\end{tabular}
+\label{tab:quantitative_channels_perturbed_p2p}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\caption[Qualitative results from skips perturbation in pix2pix]{Qualitative results from the Skip Connections Analysis on P2P$(T_{2 \rightarrow 2flair})$: skips are sequentially perturbed. \textit{Prediction} corresponds to config.[AAAAAAA]}
+\includegraphics[width=0.635\textheight]{images/a&b_p2p.pdf}
+\label{fig:qualitative_channels_perturbed_p2p}
+\end{figure}
+
+%%%%%%%%%%%%%%%%  Channels perturbed MI-GAN 
+
+\begin{table}[H]
+\centering
+\caption[Quantitative results from skips perturbation in MI-GAN]{Quantitative results from the Skip Connections Analysis on MI-GAN{$_{T_{2flair}}$}: skips are sequentially perturbed.}
+\fontsize{8.5}{16}\selectfont
+\setlength{\tabcolsep}{3.8pt}
+\begin{tabular}{l|c|c|c|c|c}
+\toprule
+\textbf{Img.in Skips} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline
+
+[AAAAAAA] & $\mathbf{0.0072\pm0.0050}$ & $\mathbf{22.5524\pm3.5655}$  & $\mathbf{0.7610\pm0.1175}$ & $\mathbf{0.0258\pm0.0285}$ & $\mathbf{17.4694\pm3.6137}$\\
+
+[BAAAAAA] & $\mathrm{0.0075\pm0.0050}$ & $\mathrm{22.3512\pm3.5176}$  & $\mathrm{0.7560\pm0.1174}$ & $\mathrm{0.0262\pm0.0282}$ & $\mathrm{17.2649\pm3.4428}$\\
+
+[BBAAAAA] & $\mathrm{0.0092\pm0.0057}$ & $\mathrm{21.3856\pm3.5600}$  & $\mathrm{0.7361\pm0.1223}$ & $\mathrm{0.0358\pm0.0277}$ & $\mathrm{15.4185\pm2.9900}$\\
+
+[BBBAAAA] & $\mathrm{0.0112\pm0.0070}$ & $\mathrm{20.5974\pm3.5783}$  & $\mathrm{0.7166\pm0.1312}$ & $\mathrm{0.0466\pm0.0308}$ & $\mathrm{14.2036\pm3.1104}$\\
+
+[BBBBAAA] & $\mathrm{0.0139\pm0.0081}$ & $\mathrm{19.5630\pm3.4078}$  & $\mathrm{0.6884\pm0.1308}$ & $\mathrm{0.0544\pm0.0365}$ & $\mathrm{13.5932\pm3.1872}$\\
+
+[BBBBBAA] & $\mathrm{0.0550\pm0.0331}$ & $\mathrm{13.4674\pm2.9789}$  & $\mathrm{0.4081\pm0.1542}$ & $\mathrm{0.1441\pm0.1447}$ & $\mathrm{10.7394\pm4.9478}$\\
+
+[BBBBBBA] & $\mathrm{0.0779\pm0.0359}$ & $\mathrm{11.8374\pm3.0566}$  & $\mathrm{0.3581\pm0.1924}$ & $\mathrm{0.1724\pm0.1329}$ & $\mathrm{9.0690\pm3.9221}$\\
+
+[BBBBBBB] & $\mathrm{0.0885\pm0.0395}$ & $\mathrm{11.1499\pm2.6073}$  & $\mathrm{0.3269\pm0.1817}$ & $\mathrm{0.1854\pm0.1660}$ & $\mathrm{9.0842\pm4.3384}$\\
+\hline
+[AAAAAAA] & $\mathbf{0.0072\pm0.0050}$ & $\mathbf{22.5524\pm3.5655}$  & $\mathbf{0.7610\pm0.1175}$ & $\mathbf{0.0258\pm0.0285}$ & $\mathbf{17.4694\pm3.6137}$\\
+
+[AAAAAAB] & $\mathrm{0.0079\pm0.0050}$ & $\mathrm{21.8535\pm2.8257}$  & $\mathrm{0.7075\pm0.1378}$ & $\mathrm{0.0277\pm0.0293}$ & $\mathrm{17.0468\pm3.4481}$\\
+
+[AAAAABB] & $\mathrm{0.0223\pm0.0210}$ & $\mathrm{18.3650\pm4.1216}$  & $\mathrm{0.6110\pm0.1769}$ & $\mathrm{0.0603\pm0.0783}$ & $\mathrm{14.8012\pm4.8060}$\\
+
+[AAAABBB] & $\mathrm{0.0755\pm0.0366}$ & $\mathrm{11.8979\pm2.6665}$  & $\mathrm{0.3496\pm0.1840}$ & $\mathrm{0.1510\pm0.1787}$ & $\mathrm{11.0146\pm5.2233}$\\
+
+[AAABBBB] & $\mathrm{0.0825\pm0.0391}$ & $\mathrm{11.4955\pm2.6361}$  & $\mathrm{0.3422\pm0.1808}$ & $\mathrm{0.1824\pm0.1783}$ & $\mathrm{9.8509\pm5.2288}$\\
+
+[AABBBBB] & $\mathrm{0.0851\pm0.0401}$ & $\mathrm{11.3747\pm2.6967}$  & $\mathrm{0.3300\pm0.1918}$ & $\mathrm{0.1703\pm0.1484}$ & $\mathrm{9.6179\pm4.6436}$\\
+
+[ABBBBBB] & $\mathrm{0.0932\pm0.0364}$ & $\mathrm{10.7946\pm2.3412}$  & $\mathrm{0.3106\pm0.1764}$ & $\mathrm{0.1799\pm0.1449}$ & $\mathrm{9.0683\pm4.2253}$\\
+
+[BBBBBBB] & $\mathrm{0.0885\pm0.0395}$ & $\mathrm{11.1499\pm2.6073}$  & $\mathrm{0.3269\pm0.1817}$ & $\mathrm{0.1854\pm0.1660}$ & $\mathrm{9.0842\pm4.3384}$\\
+\midrule
+\end{tabular}
+\label{tab:quantitative_channels_perturbed_migan}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\caption[Qualitative results from skips perturbation in MI-GAN]{Qualitative results from the Skip Connections Analysis on MI-GAN{$_{T_{2flair}}$}: skips are sequentially perturbed. \textit{Prediction} corresponds to config.[AAAAAAA]}
+\includegraphics[width=0.635\textheight]{images/a&b_migan.pdf}
+\label{fig:qualitative_channels_perturbed_migan}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%  Internal connection analysis p2p 
+
+\begin{table}[H]
+\centering
+\fontsize{8.5}{16}\selectfont
+\setlength{\tabcolsep}{4pt}
+\caption[Quantitative results from internal connections off in pix2pix]{Quantitative results from the Internal Connections Analysis on P2P$(T_{2 \rightarrow 2flair})$: channels are sequentially turned off.}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{Internal off} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline
+
+[1,1,1,1,1,1,1] & $\mathbf{0.0090\pm0.0065}$ & $\mathbf{21.5895\pm3.4831}$  & $\mathbf{0.7518\pm0.1211}$ & $\mathbf{0.0390\pm0.0463}$ & $\mathbf{15.9946\pm4.0459}$\\
+
+[0,1,1,1,1,1,1] & $\mathrm{0.0304\pm0.0188}$ & $\mathrm{16.2855\pm3.9058}$  & $\mathrm{0.5935\pm0.1641}$ & $\mathrm{0.0728\pm0.0414}$ & $\mathrm{12.0387\pm2.4420}$\\
+
+... & ... & ... & ... & ... & ... \\
+
+[0,0,0,0,0,0,0] & $\mathrm{0.0304\pm0.0188}$ & $\mathrm{16.2855\pm3.9058}$  & $\mathrm{0.5935\pm0.1641}$ & $\mathrm{0.0728\pm0.0414}$ & $\mathrm{12.0387\pm2.4420}$\\
+\hline
+[1,1,1,1,1,1,1] & $\mathrm{0.0090\pm0.0065}$ & $\mathbf{21.5895\pm3.4831}$  & $\mathbf{0.7518\pm0.1211}$ & $\mathbf{0.0390\pm0.0463}$ & $\mathbf{15.9946\pm4.0459}$\\
+
+[1,1,1,1,1,1,0] & $\mathrm{0.0091\pm0.0067}$ & $\mathrm{21.5496\pm3.5169}$  & $\mathrm{0.7507\pm0.1212}$ & $\mathrm{0.0394\pm0.0463}$ & $\mathrm{15.9192\pm4.0313}$\\
+
+[1,1,1,1,1,0,0] & $\mathbf{0.0090\pm0.0063}$ & $\mathrm{21.5083\pm3.3431}$  & $\mathrm{0.7499\pm0.1209}$ & $\mathrm{0.0402\pm0.0481}$ & $\mathrm{15.8599\pm4.0589}$\\
+
+[1,1,1,1,0,0,0] & $\mathrm{0.0097\pm0.0067}$ & $\mathrm{21.3205\pm3.6386}$  & $\mathrm{0.7459\pm0.1262}$ & $\mathrm{0.0433\pm0.0386}$ & $\mathrm{14.9701\pm3.6032}$\\
+
+[1,1,1,0,0,0,0] & $\mathrm{0.0161\pm0.0088}$ & $\mathrm{18.8596\pm3.2816}$  & $\mathrm{0.6846\pm0.1396}$ & $\mathrm{0.1041\pm0.0702}$ & $\mathrm{10.6228\pm2.7887}$\\
+
+[1,1,0,0,0,0,0] & $\mathrm{0.0138\pm0.0087}$ & $\mathrm{19.7032\pm3.7333}$  & $\mathrm{0.6989\pm0.1377}$ & $\mathrm{0.0661\pm0.0276}$ & $\mathrm{12.1871\pm1.9212}$\\
+
+[1,0,0,0,0,0,0] & $\mathrm{0.0162\pm0.0113}$ & $\mathrm{19.0486\pm3.8177}$  & $\mathrm{0.6870\pm0.1343}$ & $\mathrm{0.0410\pm0.0271}$ & $\mathrm{14.6198\pm2.5092}$\\
+
+[0,0,0,0,0,0,0] & $\mathrm{0.0304\pm0.0188}$ & $\mathrm{16.2855\pm3.9058}$  & $\mathrm{0.5935\pm0.1641}$ & $\mathrm{0.0728\pm0.0414}$ & $\mathrm{12.0387\pm2.4420}$\\
+\midrule
+\end{tabular}
+\label{tab:quantitative_internal_off_p2p}
+\end{table}
+
+\begin{figure}[H]
+\caption[Qualitative results from internal connections off in pix2pix]{Qualitative results from the Internal Connections Analysis on P2P$(T_{2 \rightarrow 2flair})$: channels are sequentially turned off. \textit{Prediction} corresponds to config.[1111111]}
+\centering
+\includegraphics[width=0.635\textheight]{images/internal_p2p.pdf}
+\label{fig:qualitative_internal_off_p2p}
+\end{figure}
+
+%%%%%%%%%%%%%%%%  Internal connection analysis MI-GAN  
+
+\begin{table}[H]
+\centering
+\caption[Quantitative results from internal connections off in MI-GAN]{Quantitative results from the Internal Connections Analysis on MI-GAN{$_{T_{2flair}}$}: channels are sequentially turned off.}
+\fontsize{8.5}{16}\selectfont
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+\textbf{Internal off} & \textbf{MSE} & \textbf{PSNR} & \textbf{SSIM} & $\mathbf{MSE_{tumor}}$ & $\mathbf{PSNR_{tumor}}$\\
+\hline
+
+[1,1,1,1,1,1,1] & $\mathbf{0.0072\pm0.0050}$ & $\mathbf{22.5524\pm3.5655}$  & $\mathbf{0.7610\pm0.1175}$ & $\mathbf{0.0258\pm0.0285}$ & $\mathbf{17.4694\pm3.6137}$\\
+
+[0,1,1,1,1,1,1] & $\mathrm{0.0124\pm0.0070}$ & $\mathrm{19.9894\pm3.2877}$  & $\mathrm{0.6496\pm0.1515}$ & $\mathrm{0.0391\pm0.0177}$ & $\mathrm{14.5517\pm2.1972}$\\
+
+... & ... & ... & ... & ... & ... \\
+
+[0,0,0,0,0,0,0] & $\mathrm{0.0124\pm0.0070}$ & $\mathrm{19.9894\pm3.2877}$  & $\mathrm{0.6496\pm0.1515}$ & $\mathrm{0.0391\pm0.0177}$ & $\mathrm{14.5517\pm2.1972}$\\
+\hline
+[1,1,1,1,1,1,1] & $\mathbf{0.0072\pm0.0050}$ & $\mathbf{22.5524\pm3.5655}$  & $\mathbf{0.7610\pm0.1175}$ & $\mathbf{0.0258\pm0.0285}$ & $\mathbf{17.4694\pm3.6137}$\\
+
+[1,1,1,1,1,1,0] & $\mathrm{0.0073\pm0.0050}$ & $\mathrm{22.5220\pm3.5588}$  & $\mathrm{0.7604\pm0.1171}$ & $\mathrm{0.0262\pm0.0287}$ & $\mathrm{17.3608\pm3.5861}$\\
+
+[1,1,1,1,1,0,0] & $\mathrm{0.0084\pm0.0051}$ & $\mathrm{21.6656\pm3.2445}$  & $\mathrm{0.7367\pm0.1215}$ & $\mathrm{0.0287\pm0.0311}$ & $\mathrm{16.8997\pm3.4755}$\\
+
+[1,1,1,1,0,0,0] & $\mathrm{0.0100\pm0.0065}$ & $\mathrm{21.0881\pm3.6372}$  & $\mathrm{0.7374\pm0.1233}$ & $\mathrm{0.0347\pm0.0165}$ & $\mathrm{15.1478\pm2.3996}$\\
+
+[1,1,1,0,0,0,0] & $\mathrm{0.0144\pm0.0072}$ & $\mathrm{19.1951\pm3.1252}$  & $\mathrm{0.6661\pm0.1422}$ & $\mathrm{0.0536\pm0.0470}$ & $\mathrm{13.8716\pm3.3014}$\\
+
+[1,1,0,0,0,0,0] & $\mathrm{0.0107\pm0.0072}$ & $\mathrm{20.8187\pm3.6480}$  & $\mathrm{0.7339\pm0.1241}$ & $\mathrm{0.0363\pm0.0166}$ & $\mathrm{14.9462\pm2.4227}$\\
+
+[1,0,0,0,0,0,0] & $\mathrm{0.0121\pm0.0070}$ & $\mathrm{20.1199\pm3.3328}$  & $\mathrm{0.6548\pm0.1258}$ & $\mathrm{0.0526\pm0.0197}$ & $\mathrm{13.1301\pm1.8387}$\\
+
+[0,0,0,0,0,0,0] & $\mathrm{0.0124\pm0.0070}$ & $\mathrm{19.9894\pm3.2877}$  & $\mathrm{0.6496\pm0.1515}$ & $\mathrm{0.0391\pm0.0177}$ & $\mathrm{14.5517\pm2.1972}$\\
+\midrule
+\end{tabular}
+\label{tab:quantitative_internal_off_migan}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\caption[Qualitative results from internal connections off in MI-GAN]{Qualitative results from the Internal Connections Analysis on MI-GAN{$_{T_{2flair}}$}: channels are sequentially turned off. \textit{Prediction} corresponds to config.[1111111]}
+\includegraphics[width=0.635\textheight]{images/internal_migan.pdf}
+\label{fig:qualitative_internal_off_migan}
+\end{figure}
+
+
+
+
