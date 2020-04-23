@@ -30,7 +30,7 @@ Folder structure
 │
 ├──  documentation/thesis
 │   ├── template LaTeX          - this folder contains src LaTex code of the thesis.
-│   └── b2020_04_Alogna.pdf     - this file contains the master thesis pdf.
+│   └── 2020_04_Alogna.pdf     - this file contains the master thesis pdf.
 │ 
 │
 │
@@ -40,7 +40,7 @@ Folder structure
 │   ├── tests         - this folder contains the notebooks to test, qualitatively and quantitavely, the models.
 │   │
 │   ├── compute_baselines.ipynb            - this file contains the code to compute baselines score between modalities.
-│   ├── dataset_helpers.py                 - this script contains the code to read tf.record.
+│   ├── dataset_helpers.py                 - this script contains the code to read the tf.record.
 │   ├── evaluation_metrics.py              - this script contains the implemented evaluation metrics.
 │   ├── generate_images_to_segment.ipynb   - this file stores all the predictions inside a tf.record.
 │   └── write_tfrecord_script.py           - this script is needed to convert .mha files in tf.record.
