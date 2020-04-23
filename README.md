@@ -30,7 +30,7 @@ Folder structure
 │
 ├──  documentation/thesis
 │   ├── template LaTeX          - this folder contains src LaTex code of the thesis.
-│   └── 2020_04_Alogna.pdf     - this file contains the master thesis pdf.
+│   └── 2020_04_Alogna.pdf      - this file contains the master thesis pdf.
 │ 
 │
 │
