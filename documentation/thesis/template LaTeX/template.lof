@@ -1,5 +1,53 @@
-\select@language {english}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces First Figure\relax }}{1}{figure.caption.9}
+\babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Pix2Pix example from Isola et al.}}{22}{figure.caption.15}% 
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Generative Adversarial Network Framework}}{24}{figure.caption.21}% 
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Layers from DCGAN, Radford, Metz, and Chintala}}{26}{figure.caption.22}% 
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Samples from Pix2Pix, Isola et al.}}{27}{figure.caption.23}% 
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Generator architectures in Pix2Pix network}}{29}{figure.caption.24}% 
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Patch size variations in PatchGAN discriminator}}{29}{figure.caption.25}% 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Brain MRI sequences from BRATS2015: $T_{2}$ and $T_{2\textit {flair}}$}}{32}{figure.caption.27}% 
+\contentsline {figure}{\numberline {3.2}{\ignorespaces $T_{1c}$ slice in HG and LG subjects }}{34}{figure.caption.28}% 
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Data distribution by set and tumor grade}}{35}{figure.caption.29}% 
+\contentsline {figure}{\numberline {3.4}{\ignorespaces The four MRI sequences: $T_{1}$, $T_{2}$, $T_{1\textit {c}}$, $T_{2\textit {flair}}$}}{37}{figure.caption.30}% 
+\contentsline {figure}{\numberline {3.5}{\ignorespaces GT used as mask to segment the $T_{2\textit {flair}}$ tumor area}}{38}{figure.caption.31}% 
+\contentsline {figure}{\numberline {3.6}{\ignorespaces An example of consecutive $T_{2}$ slices extracted from a volume}}{39}{figure.caption.32}% 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces A batch from training set: 32 $T_{1}$ processed slices}}{45}{figure.caption.36}% 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Generator architecture from pix2pix}}{46}{figure.caption.37}% 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Discriminator architecture from pix2pix}}{48}{figure.caption.38}% 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Generator architecture from MI-pix2pix}}{50}{figure.caption.39}% 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Discriminator architecture from MI-pix2pix}}{50}{figure.caption.40}% 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Generator architecture of MI-GAN}}{52}{figure.caption.41}% 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Discriminator architecture of MI-GAN}}{54}{figure.caption.42}% 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Validation loss during MI-GAN training}}{56}{figure.caption.43}% 
+\contentsline {figure}{\numberline {4.9}{\ignorespaces $T_{1c}$ predictions from MI-GAN}}{57}{figure.caption.44}% 
+\contentsline {figure}{\numberline {4.10}{\ignorespaces $T2$ slice before and after crop to 155x194}}{59}{figure.caption.47}% 
+\contentsline {figure}{\numberline {4.11}{\ignorespaces $T_{2flair}$ slices masked with the ground truth}}{62}{figure.caption.48}% 
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Comparison between Ground Truths and Segmentations}}{64}{figure.caption.49}% 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces P2P$(T_{2 \rightarrow 1})$ and P2P$(T_{1c \rightarrow 1})$ predictions}}{69}{figure.caption.56}% 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces P2P$(T_{1 \rightarrow 2})$ and P2P$(T_{2flair \rightarrow 2})$ predictions}}{69}{figure.caption.57}% 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Qualitative results from the generation of $T_{1}$}}{70}{figure.caption.58}% 
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Qualitative results from the generation of $T_{2}$}}{71}{figure.caption.59}% 
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Qualitative results from the generation of $T_{1c}$}}{72}{figure.caption.60}% 
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Qualitative results from the generation of $T_{2flair}$}}{73}{figure.caption.61}% 
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Segmentations using GAN predictions}}{74}{figure.caption.62}% 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Configuration example in Skip Connections Analysis}}{80}{figure.caption.63}% 
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Qualitative results from turning off the skips in MI-pix2pix}}{81}{figure.caption.65}% 
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Qualitative results from skips perturbation in MI-pix2pix}}{82}{figure.caption.67}% 
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Configuration example in Internal Connections Analysis}}{82}{figure.caption.68}% 
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Qualitative results from internal connections off in MI-pix2pix}}{83}{figure.caption.70}% 
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Percentual degradation in the performances of MI-pix2pix}}{85}{figure.caption.71}% 
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Percentual degradation in the performances of different models}}{86}{figure.caption.72}% 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Qualitative results from turning off the skips in pix2pix}}{94}{figure.caption.75}% 
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Qualitative results from turning off the skips in MI-GAN}}{95}{figure.caption.77}% 
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Qualitative results from skips perturbation in pix2pix}}{96}{figure.caption.79}% 
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Qualitative results from skips perturbation in MI-GAN}}{97}{figure.caption.81}% 
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Qualitative results from internal connections off in pix2pix}}{98}{figure.caption.83}% 
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Qualitative results from internal connections off in MI-GAN}}{99}{figure.caption.85}% 

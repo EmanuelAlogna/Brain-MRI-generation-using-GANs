@@ -1,5 +1,29 @@
-\select@language {english}
+\babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces First Table\relax }}{9}{table.caption.12}
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Values from different volumes before normalization\relax }}{41}{table.caption.33}% 
+\contentsline {table}{\numberline {3.2}{\ignorespaces Values from different volumes after normalization\relax }}{41}{table.caption.34}% 
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Train time/epoch of pix2pix using a reduced set of 1024 images}}{44}{table.caption.35}% 
+\contentsline {table}{\numberline {4.2}{\ignorespaces Generators input and output shapes used during training}}{58}{table.caption.45}% 
+\contentsline {table}{\numberline {4.3}{\ignorespaces Discriminators input and output shapes used during training}}{58}{table.caption.46}% 
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Generation of $T_1$: performances on the test set}}{66}{table.caption.50}% 
+\contentsline {table}{\numberline {5.2}{\ignorespaces Generation of $T_2$: performances on the test set}}{67}{table.caption.51}% 
+\contentsline {table}{\numberline {5.3}{\ignorespaces Generation of $T_{1c}$: performances on the test set}}{67}{table.caption.52}% 
+\contentsline {table}{\numberline {5.4}{\ignorespaces Generation of $T_{2flair}$: performances on the test set}}{68}{table.caption.53}% 
+\contentsline {table}{\numberline {5.5}{\ignorespaces Segmentation performances (on test set) using $T_{2flair}$ predictions}}{68}{table.caption.54}% 
+\contentsline {table}{\numberline {5.6}{\ignorespaces Training time (in epochs) of every model}}{68}{table.caption.55}% 
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Quantitative results from turning off the skips in MI-pix2pix}}{80}{table.caption.64}% 
+\contentsline {table}{\numberline {6.2}{\ignorespaces Quantitative results from skips perturbation in MI-pix2pix}}{81}{table.caption.66}% 
+\contentsline {table}{\numberline {6.3}{\ignorespaces Quantitative results from internal connections off in MI-pix2pix}}{83}{table.caption.69}% 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {A.1}{\ignorespaces Quantitative results from turning off the skips in pix2pix}}{94}{table.caption.74}% 
+\contentsline {table}{\numberline {A.2}{\ignorespaces Quantitative results from turning off the skips in MI-GAN}}{95}{table.caption.76}% 
+\contentsline {table}{\numberline {A.3}{\ignorespaces Quantitative results from skips perturbation in pix2pix}}{96}{table.caption.78}% 
+\contentsline {table}{\numberline {A.4}{\ignorespaces Quantitative results from skips perturbation in MI-GAN}}{97}{table.caption.80}% 
+\contentsline {table}{\numberline {A.5}{\ignorespaces Quantitative results from internal connections off in pix2pix}}{98}{table.caption.82}% 
+\contentsline {table}{\numberline {A.6}{\ignorespaces Quantitative results from internal connections off in MI-GAN}}{99}{table.caption.84}% 
